@@ -1,0 +1,57 @@
+package MyJenaProject;
+
+import java.io.File;
+import java.io.FileReader;
+import java.util.Iterator;
+
+import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.ontology.OntProperty;
+import org.apache.jena.rdf.model.ModelFactory;
+
+public class MyJena {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+		
+		String fileName = "src/family.owl";
+		try{
+		File file = new File(fileName);
+		FileReader reader = new FileReader(file);
+		
+		model.read(reader,null);
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		//Retrieve Ontology Classes
+		Iterator classIter = model.listClasses();
+		while(classIter.hasNext()){
+			OntClass ontclass = (OntClass) classIter.next();
+			String uri = ontclass.getURI();
+			String classname = ontclass.getLocalName();
+			if(uri != null){
+				System.out.println(uri);
+				System.out.println(classname);
+			}
+		}
+		
+		
+		//Retrieve a Specified Class
+		String classURI = "http://isq.im.mgt.ncu.edu.tw/Family#Son";
+		OntClass son = model.getOntClass(classURI);
+		String classname = son.getLocalName();
+		System.out.println(classname);
+		
+		Iterator propIter = son.listDeclaredProperties();
+		while(propIter.hasNext()){
+			OntProperty property = (OntProperty) propIter.next();
+			System.out.println(property.getLocalName());
+		}
+		
+
+	}
+
+}

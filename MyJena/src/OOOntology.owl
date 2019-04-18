@@ -1,0 +1,380 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://isq.im.mgt.ncu.edu.tw/OOontology.owl#"
+     xml:base="http://isq.im.mgt.ncu.edu.tw/OOontology.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class_Attribute -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class_Attribute">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Attribute"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class_Method -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class_Method">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Method"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class_Object -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class_Object">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Object"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class_Parameter -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class_Parameter"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Message_Method -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Message_Method">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Message"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Method"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Method_Parameter -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Method_Parameter"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Object_Message -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Object_Message">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Object"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Message"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Package_Class -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Package_Class">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Package"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Related_Class -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Related_Class">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Relationship"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Generalisation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Relating_Class -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Relating_Class">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Relationship"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#has_Objecttype -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#has_Objecttype">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Attribute"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Parameter"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#has_Datatype -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#has_Datatype">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Attribute"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Parameter"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>String</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>boolean</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>byte</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first>char</rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first>double</rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                <rdf:first>float</rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                        <rdf:first>int</rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                <rdf:first>long</rdf:first>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                        <rdf:first>short</rdf:first>
+                                                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#has_Name -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#has_Name">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Member"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Package"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#has_Visibility -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#has_Visibility">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Attribute"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Method"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>default</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>private</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>protected</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first>public</rdf:first>
+                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Aggregation -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Aggregation">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Relationship"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Association -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Association">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Relationship"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Attribute -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Attribute">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Member"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Class"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Composition -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Composition">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Relationship"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Generalisation -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Generalisation">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Relationship"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Member -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Member"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Message -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Message"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Method -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Method">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Member"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Object -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Object"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Package -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Package"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Parameter -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Parameter">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Member"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Realization -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Realization">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Relationship"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Relationship -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Relationship"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#getParameter -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#getParameter">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#setParamter -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#setParamter">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/OOOntology.owl#Parameter"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

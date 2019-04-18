@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;SQWRLDemo.java&apos; to &apos;MyJena/src/SQWRL&apos;&#x0D;&#x0A;- Original project: &apos;MyJena&apos;&#x0D;&#x0A;- Destination element: &apos;MyJena/src/SQWRL&apos;&#x0D;&#x0A;- Original element: &apos;SQWRL.SQWRLDemo.java&apos;" description="Copy compilation unit" destination="/src&lt;SQWRL" element1="/src&lt;SQWRL{SQWRLDemo.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1527814141659" units="1" version="1.0"/>
+</session>

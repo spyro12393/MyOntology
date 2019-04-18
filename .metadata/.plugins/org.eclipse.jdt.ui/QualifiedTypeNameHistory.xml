@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.apache.jena.query.QueryExecution"/>
+<fullyQualifiedTypeName name="org.apache.jena.query.ResultSet"/>
+<fullyQualifiedTypeName name="org.apache.jena.query.QuerySolution"/>
+<fullyQualifiedTypeName name="org.apache.jena.query.QueryExecutionFactory"/>
+<fullyQualifiedTypeName name="org.apache.jena.rdf.model.Literal"/>
+<fullyQualifiedTypeName name="java.io.StringWriter"/>
+<fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="java.io.FileWriter"/>
+<fullyQualifiedTypeName name="org.apache.jena.ontology.ObjectProperty"/>
+<fullyQualifiedTypeName name="org.apache.jena.rdf.model.RDFNode"/>
+<fullyQualifiedTypeName name="com.github.andrewoma.dexx.collection.HashMap"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="org.apache.jena.rdf.model.ResourceFactory"/>
+<fullyQualifiedTypeName name="org.apache.jena.ontology.DatatypeProperty"/>
+<fullyQualifiedTypeName name="org.apache.jena.rdf.model.Resource"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="MyJenaProject.ProjectDataReader2"/>
+<fullyQualifiedTypeName name="org.apache.jena.ontology.Individual"/>
+<fullyQualifiedTypeName name="MyJenaProject.MyOntology2"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+</qualifiedTypeNameHistroy>

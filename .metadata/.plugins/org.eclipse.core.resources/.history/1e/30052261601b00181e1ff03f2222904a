@@ -1,0 +1,23 @@
+package FirstOntology;
+
+import java.io.InputStream;
+
+import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.util.FileManager;
+
+public class FirstOntology {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		OntModel model = ModelFactory.createOntologyModel();
+		InputStream in = FileManager.get().open("myfirstontology.owl");
+		if (in == null) {
+		    throw new IllegalArgumentException("File: not found");
+		}
+		model.read(in, null);
+	}
+
+}

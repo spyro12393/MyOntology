@@ -1,0 +1,6 @@
+# prefix請設定為你自己的namespace與本體論
+@prefix NS: <http://isq.im.mgt.ncu.edu.tw/myfirstontology.owl#>.
+@include <RDFS>.
+
+
+[rule1: (?h rdf:type NS:herbivore)(?c rdf:type NS:carnivore) -> (?c NS:hunt ?h)]
