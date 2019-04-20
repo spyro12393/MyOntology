@@ -42,5 +42,6 @@
 	<classpathentry kind="lib" path="G:/apache-jena-3.10.0/lib-src/jena-rdfconnection-3.10.0-sources.jar"/>
 	<classpathentry kind="lib" path="G:/apache-jena-3.10.0/lib-src/jena-tdb-3.10.0-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_191/lib/java-json.jar"/>
+	<classpathentry kind="lib" path="G:/java-json.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
