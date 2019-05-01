@@ -30,7 +30,6 @@ public class SQRLDemo {
 		String fileName = recentPath + "/src/SQWRL/Security_Ver1.owl";
 		String baseURI = "http://isq.im.mgt.ncu.edu.tw/Security.owl#";
 		
-		
 		// Create Ontology model
 		OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
 		
