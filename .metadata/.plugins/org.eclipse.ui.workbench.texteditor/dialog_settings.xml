@@ -2,21 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Set" key="selection"/>
+		<item value="Use" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="use"/>
+			<item value="used"/>
+			<item value="is_"/>
+			<item value="is"/>
+			<item value="is_us"/>
+			<item value="is_used"/>
+			<item value="is_Used"/>
+			<item value="Ac"/>
+			<item value="Acc"/>
+			<item value="A"/>
+			<item value="Accessed"/>
+			<item value="Access"/>
+			<item value="is_Executed"/>
 			<item value="set"/>
 			<item value="pare"/>
-			<item value="map"/>
-			<item value="parameter"/>
-			<item value="reference"/>
-			<item value="json_element_arr"/>
-			<item value="callingSource"/>
-			<item value="createIndividual"/>
-			<item value="-&gt;"/>
 		</list>
 		<list key="replacehistory">
 			<item value="is_Used"/>
@@ -27,7 +33,7 @@
 		<item value="284" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
-		<item value="1143" key="DIALOG_X_ORIGIN"/>
-		<item value="368" key="DIALOG_Y_ORIGIN"/>
+		<item value="1533" key="DIALOG_X_ORIGIN"/>
+		<item value="214" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

@@ -112,10 +112,6 @@
     <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
     <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
   </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_NameSimular">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-  </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_passwd">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
     <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
@@ -178,6 +174,10 @@
     <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
     <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
   </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#is_Log">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+  </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Content">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference"/>
@@ -191,21 +191,96 @@
   <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#is_Descendant">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
     <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
-    <owl:equivalentProperty rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
   </owl:DatatypeProperty>
   <Security_output:Method rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.setAge">
+    <Security_output:has_GetSet>true</Security_output:has_GetSet>
     <Security_output:has_Visibility>public</Security_output:has_Visibility>
     <Security_output:has_Type>void</Security_output:has_Type>
     <Security_output:has_Name>setAge</Security_output:has_Name>
     <Security_output:has_ID>Project.ClassA.setAge</Security_output:has_ID>
+    <Security_output:Method_Class>
+      <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA">
+        <Security_output:Class_Attribute>
+          <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.AttrC">
+            <Security_output:has_Visibility>public</Security_output:has_Visibility>
+            <Security_output:has_Type>int</Security_output:has_Type>
+            <Security_output:has_Name>AttrC</Security_output:has_Name>
+            <Security_output:has_ID>Project.ClassA.AttrC</Security_output:has_ID>
+            <Security_output:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Security_output:Attribute>
+        </Security_output:Class_Attribute>
+        <Security_output:has_passwd>true</Security_output:has_passwd>
+        <Security_output:has_Name>ClassA</Security_output:has_Name>
+        <Security_output:has_GetSet>true</Security_output:has_GetSet>
+        <Security_output:has_Visibility>public</Security_output:has_Visibility>
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <Security_output:Class_Attribute>
+          <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.AttrB">
+            <Security_output:has_Visibility>public</Security_output:has_Visibility>
+            <Security_output:has_Type>String</Security_output:has_Type>
+            <Security_output:has_Name>AttrB</Security_output:has_Name>
+            <Security_output:has_ID>Project.ClassA.AttrB</Security_output:has_ID>
+            <Security_output:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Security_output:Attribute>
+        </Security_output:Class_Attribute>
+        <Security_output:is_NameSimilar>true</Security_output:is_NameSimilar>
+        <Security_output:Class_Method>
+          <Security_output:Method rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.MB">
+            <Security_output:has_Visibility>public</Security_output:has_Visibility>
+            <Security_output:has_Type>void</Security_output:has_Type>
+            <Security_output:has_Name>MB</Security_output:has_Name>
+            <Security_output:has_ID>Project.ClassA.MB</Security_output:has_ID>
+            <Security_output:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Security_output:Method>
+        </Security_output:Class_Method>
+        <Security_output:Class_Attribute>
+          <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.AttrA">
+            <Security_output:has_Visibility>public</Security_output:has_Visibility>
+            <Security_output:has_Type>int</Security_output:has_Type>
+            <Security_output:has_Name>AttrA</Security_output:has_Name>
+            <Security_output:has_ID>Project.ClassA.AttrA</Security_output:has_ID>
+            <Security_output:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Security_output:Attribute>
+        </Security_output:Class_Attribute>
+        <Security_output:Class_Method>
+          <Security_output:Method rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.MA">
+            <Security_output:has_Visibility>public</Security_output:has_Visibility>
+            <Security_output:has_Type>int</Security_output:has_Type>
+            <Security_output:has_Name>MA</Security_output:has_Name>
+            <Security_output:has_ID>Project.ClassA.MA</Security_output:has_ID>
+            <Security_output:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Security_output:Method>
+        </Security_output:Class_Method>
+        <Security_output:has_encrypt>false</Security_output:has_encrypt>
+        <Security_output:Class_Attribute>
+          <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.Password">
+            <Security_output:is_passwd>true</Security_output:is_passwd>
+            <Security_output:has_Visibility>private</Security_output:has_Visibility>
+            <Security_output:has_Type>String</Security_output:has_Type>
+            <Security_output:has_Name>Password</Security_output:has_Name>
+            <Security_output:has_ID>Project.ClassA.Password</Security_output:has_ID>
+            <Security_output:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Security_output:Attribute>
+        </Security_output:Class_Attribute>
+        <Security_output:has_ID>Project.ClassA</Security_output:has_ID>
+      </owl:NamedIndividual>
+    </Security_output:Method_Class>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </Security_output:Method>
   <Security_output:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#RuleExplainCode.B">
+    <Security_output:has_encrypt>false</Security_output:has_encrypt>
     <Security_output:has_Visibility>public</Security_output:has_Visibility>
     <Security_output:has_Name>B</Security_output:has_Name>
     <Security_output:has_ID>RuleExplainCode.B</Security_output:has_ID>
     <Security_output:Inheritance>
       <Security_output:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#RuleExplainCode.A">
+        <Security_output:has_encrypt>false</Security_output:has_encrypt>
         <Security_output:has_Visibility>public</Security_output:has_Visibility>
         <Security_output:has_Name>A</Security_output:has_Name>
         <Security_output:has_ID>RuleExplainCode.A</Security_output:has_ID>
@@ -215,25 +290,37 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </Security_output:Class>
   <Security_output:Method rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.getAge">
+    <Security_output:has_GetSet>true</Security_output:has_GetSet>
     <Security_output:has_Visibility>public</Security_output:has_Visibility>
     <Security_output:has_Type>void</Security_output:has_Type>
     <Security_output:has_Name>getAge</Security_output:has_Name>
     <Security_output:has_ID>Project.ClassA.getAge</Security_output:has_ID>
+    <Security_output:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </Security_output:Method>
   <Security_output:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#RuleExplainCode.BananaB">
     <Security_output:is_NameSimilar>true</Security_output:is_NameSimilar>
+    <Security_output:has_encrypt>false</Security_output:has_encrypt>
     <Security_output:has_Visibility>public</Security_output:has_Visibility>
     <Security_output:has_Name>BananaB</Security_output:has_Name>
     <Security_output:has_ID>RuleExplainCode.BananaB</Security_output:has_ID>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </Security_output:Class>
+  <Security_output:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.LogSaver">
+    <Security_output:is_Log>true</Security_output:is_Log>
+    <Security_output:has_encrypt>false</Security_output:has_encrypt>
+    <Security_output:has_Name>LogSaver</Security_output:has_Name>
+    <Security_output:has_ID>Project.LogSaver</Security_output:has_ID>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Security_output:Class>
   <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#RuleExplainCode.A.a">
     <Security_output:has_ID>RuleExplainCode.A.a</Security_output:has_ID>
+    <Security_output:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#RuleExplainCode.A"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </Security_output:Attribute>
   <Security_output:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#RuleExplainCode.BananaA">
     <Security_output:is_NameSimilar>true</Security_output:is_NameSimilar>
+    <Security_output:has_encrypt>false</Security_output:has_encrypt>
     <Security_output:has_Visibility>public</Security_output:has_Visibility>
     <Security_output:has_Name>BananaA</Security_output:has_Name>
     <Security_output:has_ID>RuleExplainCode.BananaA</Security_output:has_ID>
@@ -245,70 +332,87 @@
     <Security_output:Inheritance rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#RuleExplainCode.A"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </Security_output:Class>
-  <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA">
-    <Security_output:Class_Attribute>
-      <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.AttrC">
-        <Security_output:has_Visibility>public</Security_output:has_Visibility>
-        <Security_output:has_Type>int</Security_output:has_Type>
-        <Security_output:has_Name>AttrC</Security_output:has_Name>
-        <Security_output:has_ID>Project.ClassA.AttrC</Security_output:has_ID>
-        <Security_output:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-      </Security_output:Attribute>
-    </Security_output:Class_Attribute>
-    <Security_output:has_Name>ClassA</Security_output:has_Name>
+  <Security_output:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB">
+    <Security_output:is_NameSimilar>true</Security_output:is_NameSimilar>
     <Security_output:has_Visibility>public</Security_output:has_Visibility>
-    <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+    <Security_output:has_Name>ClassB</Security_output:has_Name>
     <Security_output:Class_Attribute>
-      <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.AttrB">
-        <Security_output:has_Visibility>public</Security_output:has_Visibility>
-        <Security_output:has_Type>String</Security_output:has_Type>
-        <Security_output:has_Name>AttrB</Security_output:has_Name>
-        <Security_output:has_ID>Project.ClassA.AttrB</Security_output:has_ID>
-        <Security_output:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
+      <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.AttrC">
+        <Security_output:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
       </Security_output:Attribute>
     </Security_output:Class_Attribute>
     <Security_output:Class_Method>
-      <Security_output:Method rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.MB">
+      <Security_output:Method rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.setAge">
+        <Security_output:has_GetSet>true</Security_output:has_GetSet>
         <Security_output:has_Visibility>public</Security_output:has_Visibility>
         <Security_output:has_Type>void</Security_output:has_Type>
-        <Security_output:has_Name>MB</Security_output:has_Name>
-        <Security_output:has_ID>Project.ClassA.MB</Security_output:has_ID>
+        <Security_output:has_Name>setAge</Security_output:has_Name>
+        <Security_output:has_ID>Project.ClassB.setAge</Security_output:has_ID>
+        <Security_output:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
       </Security_output:Method>
     </Security_output:Class_Method>
     <Security_output:Class_Attribute>
-      <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.AttrA">
-        <Security_output:has_Visibility>public</Security_output:has_Visibility>
-        <Security_output:has_Type>int</Security_output:has_Type>
-        <Security_output:has_Name>AttrA</Security_output:has_Name>
-        <Security_output:has_ID>Project.ClassA.AttrA</Security_output:has_ID>
-        <Security_output:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-      </Security_output:Attribute>
-    </Security_output:Class_Attribute>
-    <Security_output:Class_Method>
-      <Security_output:Method rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.MA">
-        <Security_output:has_Visibility>public</Security_output:has_Visibility>
-        <Security_output:has_Type>int</Security_output:has_Type>
-        <Security_output:has_Name>MA</Security_output:has_Name>
-        <Security_output:has_ID>Project.ClassA.MA</Security_output:has_ID>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-      </Security_output:Method>
-    </Security_output:Class_Method>
-    <Security_output:Class_Attribute>
-      <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.Password">
+      <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.Password">
+        <Security_output:is_passwd>true</Security_output:is_passwd>
         <Security_output:has_Visibility>private</Security_output:has_Visibility>
         <Security_output:has_Type>String</Security_output:has_Type>
         <Security_output:has_Name>Password</Security_output:has_Name>
-        <Security_output:has_ID>Project.ClassA.Password</Security_output:has_ID>
-        <Security_output:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
+        <Security_output:has_ID>Project.ClassB.Password</Security_output:has_ID>
+        <Security_output:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
       </Security_output:Attribute>
     </Security_output:Class_Attribute>
-    <Security_output:has_ID>Project.ClassA</Security_output:has_ID>
-  </owl:NamedIndividual>
+    <Security_output:Class_Attribute>
+      <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.AttrB">
+        <Security_output:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Security_output:Attribute>
+    </Security_output:Class_Attribute>
+    <Security_output:has_GetSet>true</Security_output:has_GetSet>
+    <Security_output:has_encrypt>false</Security_output:has_encrypt>
+    <Security_output:has_ID>Project.ClassB</Security_output:has_ID>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <Security_output:Class_Method>
+      <Security_output:Method rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.MA">
+        <Security_output:has_Visibility>public</Security_output:has_Visibility>
+        <Security_output:has_Type>void</Security_output:has_Type>
+        <Security_output:has_Name>MA</Security_output:has_Name>
+        <Security_output:has_ID>Project.ClassB.MA</Security_output:has_ID>
+        <Security_output:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Security_output:Method>
+    </Security_output:Class_Method>
+    <Security_output:has_passwd>true</Security_output:has_passwd>
+    <Security_output:Class_Method>
+      <Security_output:Method rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.MB">
+        <Security_output:has_Visibility>public</Security_output:has_Visibility>
+        <Security_output:has_Type>int</Security_output:has_Type>
+        <Security_output:has_Name>MB</Security_output:has_Name>
+        <Security_output:has_ID>Project.ClassB.MB</Security_output:has_ID>
+        <Security_output:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Security_output:Method>
+    </Security_output:Class_Method>
+    <Security_output:Class_Attribute>
+      <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.AttrA">
+        <Security_output:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Security_output:Attribute>
+    </Security_output:Class_Attribute>
+    <Security_output:Class_Method>
+      <Security_output:Method rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.getAge">
+        <Security_output:has_GetSet>true</Security_output:has_GetSet>
+        <Security_output:has_Visibility>public</Security_output:has_Visibility>
+        <Security_output:has_Type>void</Security_output:has_Type>
+        <Security_output:has_Name>getAge</Security_output:has_Name>
+        <Security_output:has_ID>Project.ClassB.getAge</Security_output:has_ID>
+        <Security_output:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Security_output:Method>
+    </Security_output:Class_Method>
+  </Security_output:Class>
   <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#RuleExplainCode.EncryptExample">
     <Security_output:has_ID>RuleExplainCode.EncryptExample</Security_output:has_ID>
     <Security_output:Class_Attribute>
@@ -321,6 +425,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
       </Security_output:Attribute>
     </Security_output:Class_Attribute>
+    <Security_output:has_passwd>true</Security_output:has_passwd>
     <Security_output:has_Visibility>public</Security_output:has_Visibility>
     <Security_output:Class_Method>
       <Security_output:Method rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#RuleExplainCode.EncryptExample.mb">
@@ -333,6 +438,7 @@
     </Security_output:Class_Method>
     <Security_output:Class_Attribute>
       <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#RuleExplainCode.EncryptExample.d">
+        <Security_output:is_passwd>true</Security_output:is_passwd>
         <Security_output:has_Visibility>public</Security_output:has_Visibility>
         <Security_output:has_Type>String</Security_output:has_Type>
         <Security_output:has_Name>pwd</Security_output:has_Name>
@@ -343,6 +449,7 @@
     </Security_output:Class_Attribute>
     <Security_output:Class_Attribute>
       <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#RuleExplainCode.EncryptExample.b">
+        <Security_output:has_encrypt>true</Security_output:has_encrypt>
         <Security_output:has_Visibility>public</Security_output:has_Visibility>
         <Security_output:has_Type>SecretKey</Security_output:has_Type>
         <Security_output:has_Name>deskey</Security_output:has_Name>
@@ -370,8 +477,10 @@
       </Security_output:Method>
     </Security_output:Class_Method>
     <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+    <Security_output:has_encrypt>true</Security_output:has_encrypt>
     <Security_output:Class_Attribute>
       <Security_output:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#RuleExplainCode.EncryptExample.c">
+        <Security_output:is_passwd>true</Security_output:is_passwd>
         <Security_output:has_Visibility>public</Security_output:has_Visibility>
         <Security_output:has_Type>String</Security_output:has_Type>
         <Security_output:has_Name>password</Security_output:has_Name>

@@ -39,7 +39,7 @@ public class jena_query {
 			model.write(writer, "RDF/XML-ABBREV");
 			System.out.println("Done.");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -47,11 +47,14 @@ public class jena_query {
 
 	public static void set_hasServiceMethod(OntModel model, String baseURI) {
 		
+		System.out.println("-------------------------------");
 		System.out.println("Start setting has_ServiceMethod.");
 		ArrayList<RDFNode> Target_hasServiceMethod = new ArrayList<RDFNode>();
+		ArrayList<RDFNode> Class_hasServiceMethod = new ArrayList<RDFNode>();
 		DatatypeProperty has_GetSet = model.getDatatypeProperty(baseURI + "has_GetSet");
+		ObjectProperty Method_Class = model.getObjectProperty(baseURI + "Method_Class");
 				
-		System.out.println("----------Class----------");
+		//System.out.println("----------Class----------");
 				
 		String queryString = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
@@ -62,16 +65,16 @@ public class jena_query {
 		QueryExecution qexec = QueryExecutionFactory.create(query, model);
 				
 		try {
-			System.out.println("start");
+			
 			ResultSet results = qexec.execSelect();
 			while(results.hasNext()) {
 						
 				QuerySolution soln = results.nextSolution();
-				System.out.println("--------------------query---------------------");
+				//System.out.println("--------------------query---------------------");
 				Literal method_ID = soln.getLiteral("method_ID");
 				Literal method_name = soln.getLiteral("method_name");
 				Literal method_visibility = soln.getLiteral("method_visibility");
-				System.out.println("Class ID: " + method_ID + "\n" + "Class Name: " + method_name + "\nClass Visibility: " + method_visibility);
+				//System.out.println("Method ID: " + method_ID + "\n" + "Method Name: " + method_name + "\nMethod Visibility: " + method_visibility);
 				
 				if(String.valueOf(method_name).contains("get") || String.valueOf(method_name).contains("set")) {
 					Target_hasServiceMethod.add(method_ID);
@@ -86,6 +89,46 @@ public class jena_query {
 			Individual temp_individual = model.getIndividual(baseURI + Target_hasServiceMethod.get(i));
 			temp_individual.setPropertyValue(has_GetSet, ResourceFactory.createTypedLiteral("true"));
 		}
+		
+		System.out.println("has Get/Set Done.");
+		
+		// If Get/Set = true, find which class it belongs.
+		String queryString2 = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
+				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
+				+ "?method a oo:Method; oo:has_ID ?method_ID ; oo:has_Name ?method_name; oo:has_GetSet \"true\"; oo:Method_Class ?class."
+				+ "?class a oo:Class ; oo:has_ID ?class_ID" + "}";
+		
+		System.out.println(queryString2);
+		Query query2 = QueryFactory.create(queryString2);
+		QueryExecution qexec2 = QueryExecutionFactory.create(query2, model);
+		
+		try {
+			System.out.println("start");
+			ResultSet results = qexec2.execSelect();
+			while(results.hasNext()) {
+						
+				QuerySolution soln = results.nextSolution();
+				//System.out.println("--------------------query---------------------");
+				Literal method_ID = soln.getLiteral("method_ID");
+				Literal method_name = soln.getLiteral("method_name");
+				Literal method_getset = soln.getLiteral("method_getset");
+				Literal class_ID = soln.getLiteral("class_ID");
+				//Literal method_visibility = soln.getLiteral("method_visibility");
+				//System.out.println("Method ID: " + method_ID + "\n" + "Method Name: " + method_name + "\nMethod Get/Set: " + method_getset + "\nwhat Class? " + class_ID);
+				
+				Class_hasServiceMethod.add(class_ID);
+			}
+		} finally {
+			System.out.println("end");
+		}
+		
+		for(int i=0; i<Class_hasServiceMethod.size(); i++) {
+			Individual temp_individual = model.getIndividual(baseURI + Class_hasServiceMethod.get(i));
+			temp_individual.setPropertyValue(has_GetSet, ResourceFactory.createTypedLiteral("true"));
+		}
+		
+		System.out.println("has_ServiceMethod Done.");
+		System.out.println("-------------------------------");
 		
 	}
 	
@@ -102,14 +145,14 @@ public class jena_query {
 		DatatypeProperty has_encrypt = model.getDatatypeProperty(baseURI + "has_encrypt");
 		ObjectProperty Attribute_Class = model.getObjectProperty(baseURI + "Attribute_Class");
 		
-		System.out.println("Output: " + Attribute_Class);
+		//System.out.println("Output: " + Attribute_Class);
 				
-		System.out.println("----------Class----------");
+		//System.out.println("----------Class----------");
 		String queryString = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
 				+ "?attribute a oo:Attribute ; oo:has_ID ?attribute_ID; oo:has_Name ?attribute_name; oo:has_Visibility ?attribute_Visibility; oo:has_Type ?attribute_Type" + "}";
 				
-		System.out.println(queryString);
+		//System.out.println(queryString);
 		Query query = QueryFactory.create(queryString);
 		QueryExecution qexec = QueryExecutionFactory.create(query, model);
 				
@@ -142,12 +185,10 @@ public class jena_query {
 			}
 		} finally {
 			qexec.close();
-			//System.out.println("end");
-			System.out.println("============================================================================");
 		}
 		
 		// Add info to output.owl
-		System.out.println("--------------------\nAttribute id that has Password: " + Target_isPasswd + "\n-------------------");
+		System.out.println("Attribute id that has Password: " + Target_isPasswd);
 		
 		for(int i=0; i<Target_isPasswd.size(); i++) {
 			//System.out.println("T: Set \"" + Target_isPasswd.get(i) + "\" is_passwd.");
@@ -155,7 +196,7 @@ public class jena_query {
 			temp_individual.setPropertyValue(is_passwd, ResourceFactory.createTypedLiteral("true"));
 		}
 		
-		System.out.println("--------------------\nAttribute id that has encrypt: " + Target_has_encrypt + "\n-------------------");
+		System.out.println("Attribute id that has encrypt: " + Target_has_encrypt);
 		for(int i=0; i<Target_has_encrypt.size(); i++) {
 			//System.out.println("T: Set \"" + Target_has_encrypt.get(i) + "\" has_encrypt.");
 			Individual temp_individual = model.getIndividual(baseURI + Target_has_encrypt.get(i));
@@ -169,7 +210,7 @@ public class jena_query {
 				+ "}";
 		Query queryAllClass = QueryFactory.create(queryAllClassString);
 		QueryExecution qexecAllClass = QueryExecutionFactory.create(queryAllClass, model);
-		System.out.println("--------------------Initializing All Class---------------------");
+		// System.out.println("--------------------Initializing All Class---------------------");
 		try {
 			ResultSet resultsAllClass = qexecAllClass.execSelect();
 			while (resultsAllClass.hasNext()) {
@@ -182,7 +223,7 @@ public class jena_query {
 			qexecAllClass.close();
 		}
 		for(int i = 0; i < tempArray.size(); i++) {
-			System.out.println("F: Init all class \"" + tempArray.get(i) + "\" has_encrypt to false.");
+			//System.out.println("F: Init all class \"" + tempArray.get(i) + "\" has_encrypt to false.");
 			Individual temp_individual = model.getIndividual(baseURI + tempArray.get(i));
 			temp_individual.setPropertyValue(has_encrypt, ResourceFactory.createTypedLiteral("false"));
 		}
@@ -261,7 +302,7 @@ public class jena_query {
 				QuerySolution soln4 = results4.nextSolution();
 				Literal class_ID = soln4.getLiteral("class_ID");
 				//Literal class_name = soln4.getLiteral("class_name");
-				System.out.println("===================!VUL: Classes that has password but no encrypt method: " + class_ID + "==============================");
+				System.out.println("Classes that has password but no encrypt method: " + class_ID);
 				//Target_has_encrypt.add(class_ID);
 			}
 		}
@@ -269,7 +310,8 @@ public class jena_query {
 			qexec2.close();
 		}
 		
-		
+		System.out.println("isEncrypt Done");
+		System.out.println("-------------------------------");
 	}
 	
 	public static void set_Decendant(OntModel model, String baseURI) {
@@ -280,10 +322,7 @@ public class jena_query {
 		// ArrayList<RDFNode> TargetA = new ArrayList<RDFNode>();
 		
 		DatatypeProperty is_Descendant = model.getDatatypeProperty(baseURI + "is_Descendant");
-		
-		System.out.println(is_Descendant);
-		System.out.println("--------------------class---------------------");
-		
+				
 		// ----------------class---------------------
 		String queryString = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
@@ -297,7 +336,7 @@ public class jena_query {
 			while (results.hasNext()) {
 				QuerySolution soln = results.nextSolution();
 				// RDFNode x = soln.get("class");
-				System.out.println("--------------------query---------------------");
+				//System.out.println("--------------------query---------------------");
 				Literal class_ID = soln.getLiteral("class_ID");
 				Literal class_name = soln.getLiteral("class_name");
 				Literal super_ID = soln.getLiteral("super_ID");
@@ -453,6 +492,8 @@ public class jena_query {
 			temp_individual.setPropertyValue(is_Descendant , ResourceFactory.createTypedLiteral("true"));
 			
 		}
+		
+		System.out.println("set Decendant Done.");
 	}
 	
 	public static void set_NameSimular(OntModel model, String baseURI) {
@@ -467,22 +508,22 @@ public class jena_query {
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
 				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name" + "}";
 		
-		System.out.println(queryString);
+		//System.out.println(queryString);
 		Query query = QueryFactory.create(queryString);
 		QueryExecution qexec = QueryExecutionFactory.create(query, model);
 				
 		try {
-			System.out.println("-----------\nQuerying Attribute info...");
+			System.out.println("Querying Attribute info...");
 			ResultSet results = qexec.execSelect();
 			while(results.hasNext()) {
 						
 				QuerySolution soln = results.nextSolution();
-				System.out.println("--------------------query---------------------");
+				//System.out.println("--------------------query---------------------");
 				Literal class_ID = soln.getLiteral("class_ID");
 				Literal class_name = soln.getLiteral("class_name");
 				// Literal is_passwd = soln.getLiteral("is_passwd");
 				
-				System.out.println("Class Name: " + class_name + "\nClass ID:" + class_ID);
+				// System.out.println("Class Name: " + class_name + "\nClass ID:" + class_ID);
 				
 				Target_ClassName.add(class_name);
 				Target_ClassID.add(class_ID);
@@ -493,15 +534,12 @@ public class jena_query {
 			System.out.println("end");
 		}
 		
-		for(int i=0; i<Target_ClassName.size(); i++) {
-			System.out.println(i + ": " + Target_ClassName.get(i));}
-		
 		 // 1 because you don't need to compare with yourself.
 		for(int i=0; i<Target_ClassName.size(); i++) {
 			for(int j=i+1; j<Target_ClassName.size(); j++) {
 				
 				//System.out.println(i + ": " + Target_ClassName.get(i) + " compare w/ " + j + ": " + Target_ClassName.get(j));
-				calSimilarity.printSimilarity(String.valueOf(Target_ClassName.get(i)), String.valueOf(Target_ClassName.get(j)));
+				//calSimilarity.printSimilarity(String.valueOf(Target_ClassName.get(i)), String.valueOf(Target_ClassName.get(j)));
 				double sim = calSimilarity.similarity(String.valueOf(Target_ClassName.get(i)), String.valueOf(Target_ClassName.get(j)));
 				if(sim > 0.7) {
 					System.out.println(sim + " is too similar." + "ClassID: " + Target_ClassID.get(i) + " and " + Target_ClassID.get(j));
@@ -516,7 +554,8 @@ public class jena_query {
 				}
 			}
 		}
-		//System.out.println(Target_ClassName);
+		
+		System.out.println("-------------------------------");
 	}
 	
 	public static void testClass(OntModel model) {
@@ -561,7 +600,114 @@ public class jena_query {
 		
 	}
 	
-	public static void main(String[] args) {
+	public static void set_hasLog(OntModel model, String baseURI) {
+		
+		System.out.println("Starting to set hasLog");
+		ArrayList<RDFNode> Target_isLog = new ArrayList<RDFNode>();
+		
+		DatatypeProperty is_Log = model.getDatatypeProperty(baseURI + "is_Log");
+				
+		String queryString = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
+				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
+				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name" + "}";
+		
+		//System.out.println(queryString);
+		Query query = QueryFactory.create(queryString);
+		QueryExecution qexec = QueryExecutionFactory.create(query, model);
+				
+		try {
+			System.out.println("Querying Class info...");
+			ResultSet results = qexec.execSelect();
+			while(results.hasNext()) {
+						
+				QuerySolution soln = results.nextSolution();
+				//System.out.println("--------------------query---------------------");
+				Literal class_ID = soln.getLiteral("class_ID");
+				Literal class_name = soln.getLiteral("class_name");
+				// Literal is_passwd = soln.getLiteral("is_passwd");
+				
+				// System.out.println("Class Name: " + class_name + "\nClass ID:" + class_ID);
+				
+				if(String.valueOf(class_name).contains("Log") || String.valueOf(class_name).contains("log")) {
+					Target_isLog.add(class_ID);
+				}
+				
+			}
+		} finally {
+			System.out.println("end");
+		}
+		
+		for(int i=0; i<Target_isLog.size(); i++) {
+			Individual temp_individual = model.getIndividual(baseURI + Target_isLog.get(i));
+			// System.out.println(temp_individual);
+			temp_individual.setPropertyValue(is_Log , ResourceFactory.createTypedLiteral("true"));
+		}
+		
+	}
+	
+	public static void set_isRepeative(OntModel model, String baseURI) {
+		// [TODO]
+		System.out.println("Start setting is_Repeative.");
+		ArrayList<RDFNode> Target_ClassName = new ArrayList<RDFNode>();
+		ArrayList<RDFNode> Target_ClassID = new ArrayList<RDFNode>();
+		
+		DatatypeProperty is_NameSimilar = model.getDatatypeProperty(baseURI + "is_Repeative");
+				
+		String queryString = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
+				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
+				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name" + "}";
+		
+		System.out.println(queryString);
+		Query query = QueryFactory.create(queryString);
+		QueryExecution qexec = QueryExecutionFactory.create(query, model);
+				
+		try {
+			System.out.println("-----------\nQuerying Attribute info...");
+			ResultSet results = qexec.execSelect();
+			while(results.hasNext()) {
+						
+				QuerySolution soln = results.nextSolution();
+				//System.out.println("--------------------query---------------------");
+				Literal class_ID = soln.getLiteral("class_ID");
+				Literal class_name = soln.getLiteral("class_name");
+				// Literal is_passwd = soln.getLiteral("is_passwd");
+				
+				// System.out.println("Class Name: " + class_name + "\nClass ID:" + class_ID);
+				
+				Target_ClassName.add(class_name);
+				Target_ClassID.add(class_ID);
+				
+				//calSim.printSimilarity("password", "Passwd");
+			}
+		} finally {
+			System.out.println("end");
+		}
+		
+		 // 1 because you don't need to compare with yourself.
+		for(int i=0; i<Target_ClassName.size(); i++) {
+			for(int j=i+1; j<Target_ClassName.size(); j++) {
+				
+				//System.out.println(i + ": " + Target_ClassName.get(i) + " compare w/ " + j + ": " + Target_ClassName.get(j));
+				//calSimilarity.printSimilarity(String.valueOf(Target_ClassName.get(i)), String.valueOf(Target_ClassName.get(j)));
+				double sim = calSimilarity.similarity(String.valueOf(Target_ClassName.get(i)), String.valueOf(Target_ClassName.get(j)));
+				if(sim > 0.7) {
+					System.out.println(sim + " is too similar." + "ClassID: " + Target_ClassID.get(i) + " and " + Target_ClassID.get(j));
+					
+					Individual temp_individual = model.getIndividual(baseURI + Target_ClassID.get(i));
+					System.out.println(temp_individual);
+					temp_individual.setPropertyValue(is_NameSimilar , ResourceFactory.createTypedLiteral("true"));
+					
+					Individual temp_individual2 = model.getIndividual(baseURI + Target_ClassID.get(j));
+					System.out.println(temp_individual2);
+					temp_individual2.setPropertyValue(is_NameSimilar , ResourceFactory.createTypedLiteral("true"));
+				}
+			}
+		}
+		
+	}
+	
+	
+	public static void main(String[] args) { 
 		
 		// Def basic info.
 		String recentPath = System.getProperty("user.dir");
@@ -580,17 +726,13 @@ public class jena_query {
 			} catch (Exception e) {	
 				e.printStackTrace();
 			}
-
-		ObjectProperty Reference_Attribute = model.getObjectProperty(baseURI + "Reference_Attribute");
-		System.out.println("main: " + Reference_Attribute);
 		
-		DatatypeProperty is_passwd = model.getDatatypeProperty(baseURI + "is_passwd");
-		System.out.println("main: " + is_passwd);
-		
-		// TODO: set_hasServiceMethod(model, baseURI);
-		//set_isEncrypt(model, baseURI);
+		set_hasServiceMethod(model, baseURI);
+		set_isEncrypt(model, baseURI);
 		//set_Decendant(model, baseURI);
 		set_NameSimular(model, baseURI);
+		set_hasLog(model, baseURI);
+		// TODO: set_isRepeative(model, baseURI);
 		//testClass();
 		
 		
@@ -612,6 +754,9 @@ public class jena_query {
 		*/
 		
 		WriteModel(model, baseURI);
+		
+		System.out.println("FUCK");
+		calTVI.getVal();
 	}
 		
 			

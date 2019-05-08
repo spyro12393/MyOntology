@@ -229,15 +229,6 @@
     
 
 
-    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#has_NameSimular -->
-
-    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_NameSimular">
-        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    </owl:DatatypeProperty>
-    
-
-
     <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Type -->
 
     <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Type">
@@ -309,7 +300,6 @@
     <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#is_Descendant -->
 
     <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#is_Descendant">
-        <owl:equivalentProperty rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
         <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
     </owl:DatatypeProperty>
@@ -320,6 +310,15 @@
 
     <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#is_Executed">
         <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#is_Log -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#is_Log">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
     </owl:DatatypeProperty>
     
@@ -355,12 +354,6 @@
         <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Parameter"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
     </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.w3.org/2002/07/owl#topDataProperty -->
-
-    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#topDataProperty"/>
     
 
 
@@ -536,6 +529,7 @@
 
     <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.MA">
         <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
         <has_ID>Project.ClassA.MA</has_ID>
         <has_Name>MA</has_Name>
         <has_Type>int</has_Type>
@@ -548,6 +542,7 @@
 
     <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.MB">
         <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
         <has_ID>Project.ClassA.MB</has_ID>
         <has_Name>MB</has_Name>
         <has_Type>void</has_Type>
@@ -573,6 +568,7 @@
 
     <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.getAge">
         <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
         <has_ID>Project.ClassA.getAge</has_ID>
         <has_Name>getAge</has_Name>
         <has_Type>void</has_Type>
@@ -585,10 +581,132 @@
 
     <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA.setAge">
         <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassA"/>
         <has_ID>Project.ClassA.setAge</has_ID>
         <has_Name>setAge</has_Name>
         <has_Type>void</has_Type>
         <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.AttrA"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.AttrB"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.AttrC"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.Password"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.MA"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.MB"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.getAge"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.setAge"/>
+        <has_ID>Project.ClassB</has_ID>
+        <has_Name>ClassB</has_Name>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.AttrA -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.AttrA">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.AttrB -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.AttrB">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.AttrC -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.AttrC">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.MA -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.MA">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
+        <has_ID>Project.ClassB.MA</has_ID>
+        <has_Name>MA</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.MB -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.MB">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
+        <has_ID>Project.ClassB.MB</has_ID>
+        <has_Name>MB</has_Name>
+        <has_Type>int</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.Password -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.Password">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
+        <has_ID>Project.ClassB.Password</has_ID>
+        <has_Name>Password</has_Name>
+        <has_Type>String</has_Type>
+        <has_Visibility>private</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.getAge -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.getAge">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
+        <has_ID>Project.ClassB.getAge</has_ID>
+        <has_Name>getAge</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.setAge -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB.setAge">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.ClassB"/>
+        <has_ID>Project.ClassB.setAge</has_ID>
+        <has_Name>setAge</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.LogSaver -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project.LogSaver">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <has_ID>Project.LogSaver</has_ID>
+        <has_Name>LogSaver</has_Name>
     </owl:NamedIndividual>
     
 
@@ -608,6 +726,7 @@
 
     <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#RuleExplainCode.A.a">
         <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#RuleExplainCode.A"/>
         <has_ID>RuleExplainCode.A.a</has_ID>
     </owl:NamedIndividual>
     
