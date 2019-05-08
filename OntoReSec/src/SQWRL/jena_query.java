@@ -755,7 +755,6 @@ public class jena_query {
 		
 		WriteModel(model, baseURI);
 		
-		System.out.println("FUCK");
 		calTVI.getVal();
 	}
 		
