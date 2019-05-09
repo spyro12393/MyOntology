@@ -61,5 +61,4 @@ INDEX VERSION 1.131+G:\MyOntology\.metadata\.plugins\org.eclipse.jdt.core
 3062153125.index
 3182647641.index
 3165122411.index
-3245741011.index
 3579902010.index

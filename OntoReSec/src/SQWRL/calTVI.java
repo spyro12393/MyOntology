@@ -2,9 +2,9 @@ package SQWRL;
 
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 
-import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.query.Query;
@@ -15,18 +15,21 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.RDFNode;
-import org.apache.jena.rdf.model.ResourceFactory;
+import java.util.HashMap;
+import java.util.Map;
+import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 public class calTVI {
 	
 	
 	
-	public static void getVal() {
+	public static void getVal() throws JSONException {
 		
 		int total_class = 0;
-		int NV_Encrypt = 0;
-		int NV_ServiceMethod = 0;
+		int Encrypt = 0;
+		int ServiceMethod = 0;
 		int NV_NameSimilar = 0;
 		int NV_Log = 0;
 		
@@ -110,7 +113,7 @@ public class calTVI {
 				
 				
 				if(Boolean.valueOf(class_encrypt.toString()) == true) {
-					NV_Encrypt += 1;
+					Encrypt += 1;
 				}
 				
 			}
@@ -118,7 +121,7 @@ public class calTVI {
 			qexec_encrypt.close();
 		}
 		
-		System.out.print("NV_Encrypt: " + NV_Encrypt);
+		System.out.print("Encrypt: " + Encrypt);
 		System.out.println("\n--------");
 		
 		// ====================================================================
@@ -145,7 +148,7 @@ public class calTVI {
 				System.out.println("Class Name: " + class_name + "\nClass ID:" + class_ID + "\nClass Get/Set: " + class_getset);// + "\nClass encrypt: " + class_encrypt + "\nClass Get/Set" + class_getset);
 				
 				if(Boolean.valueOf(class_getset.toString()) == true) {
-					NV_ServiceMethod += 1;
+					ServiceMethod += 1;
 				}
 				
 			}
@@ -185,14 +188,98 @@ public class calTVI {
 			qexec_NameSimilar.close();
 		}
 		
+		// ====================================================================
 		
+				// has_NameSimilar
+		String queryString_Log = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
+				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
+				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name; oo:is_Log ?class_log}";// oo:has_encrypt ?class_encrypt; oo:has_Visiblity ?class_visibility; oo:is_NameSimilar ?class_namesimilar; oo:has_Log ?class_Log" + "}";
+						
+		System.out.println("\n" + queryString_Log);
+		Query query_Log = QueryFactory.create(queryString_Log);
+		QueryExecution qexec_Log = QueryExecutionFactory.create(query_Log, model);
+								
+		try {
+			ResultSet results = qexec_Log.execSelect();
+			while(results.hasNext()) {
+								
+				QuerySolution soln = results.nextSolution();
+				Literal class_ID = soln.getLiteral("class_ID");
+				Literal class_name = soln.getLiteral("class_name");
+				Literal class_log = soln.getLiteral("class_log");
+								
+								
+				System.out.println("Class Name: " + class_name + "\nClass ID:" + class_ID + "\nClass Name is Log: " + class_log);// + "\nClass encrypt: " + class_encrypt + "\nClass Get/Set" + class_getset);
+						
+				if(Boolean.valueOf(class_log.toString()) == true) {
+					NV_Log += 1;
+				}
+								
+			}
+		} finally {
+			qexec_Log.close();
+		}
 		
 		
 		// Show Results
 		System.out.println("==================Results=================");
+		
 		System.out.println("Total Class number: " + total_class);
-		System.out.println("NV_Encrypt: " + NV_Encrypt);
-		System.out.println("NV_getset: " + NV_ServiceMethod);
+		
+		// TODO:
+		int NV_Repeative = 0;
+		System.out.println("Repeative: " + NV_Repeative);
+		
+		System.out.println("Encrypt: " + Encrypt);
+		
+		System.out.println("GetSet: " + ServiceMethod);
+		
 		System.out.println("NV_NameSimilar: " + NV_NameSimilar);
+		
+		System.out.println("NV_Log: " + NV_Log);
+		
+		int NV_ServiceMethod = total_class - ServiceMethod;
+		System.out.println("NV_GetSet: " + NV_ServiceMethod);
+		
+		int NV_Encrypt = total_class - Encrypt;
+		System.out.println("NV_Encrypt: " + NV_Encrypt);
+		
+		int Spoofing = 0;
+		int Tampering = 0;
+		int Repudiation = 0;
+		int InformationDisclosure = 0;
+		int DenialOfService = 0;
+		int ElevationOfPrivilege = 0;
+		
+		Spoofing = NV_NameSimilar;
+		Tampering = NV_ServiceMethod + NV_Encrypt;
+		Repudiation = NV_Log;
+		InformationDisclosure = NV_Encrypt;
+		DenialOfService = NV_Repeative;
+		ElevationOfPrivilege = NV_ServiceMethod;
+		
+		// Save results to json file
+		String message;
+		JSONObject obj = new JSONObject();
+		obj.put("Spoofing", Spoofing);
+		obj.put("Tampering", Tampering);
+		obj.put("Repudiation", Repudiation);
+		obj.put("InformationDisclosure", InformationDisclosure);
+		obj.put("DenialOfService", DenialOfService);
+		obj.put("ElevationOfPrivilege", ElevationOfPrivilege);
+		
+		System.out.println(obj);
+		
+		// Save to .json file
+		try (FileWriter file = new FileWriter("g:\\SecurityWeb\\my-app\\src\\assets\\results.json")) {
+            file.write(String.valueOf(obj));
+            System.out.println("Finish saving to json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
+
+	
+	
+	
 }

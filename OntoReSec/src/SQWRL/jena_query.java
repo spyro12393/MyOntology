@@ -25,6 +25,7 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
+import org.json.JSONException;
 
 public class jena_query {
 		
@@ -44,7 +45,7 @@ public class jena_query {
 		}
 	}
 	
-
+	// Tampering, Elevation of Privilege
 	public static void set_hasServiceMethod(OntModel model, String baseURI) {
 		
 		System.out.println("-------------------------------");
@@ -132,6 +133,7 @@ public class jena_query {
 		
 	}
 	
+	// Tampering, Information disclosure
 	public static void set_isEncrypt(OntModel model, String baseURI) {
 		System.out.println("Start setting isEncrypt.");
 		ArrayList<RDFNode> Target_isPasswd = new ArrayList<RDFNode>();
@@ -496,6 +498,7 @@ public class jena_query {
 		System.out.println("set Decendant Done.");
 	}
 	
+	// Spoofing
 	public static void set_NameSimular(OntModel model, String baseURI) {
 		
 		System.out.println("Start setting has_NameSimular.");
@@ -600,6 +603,7 @@ public class jena_query {
 		
 	}
 	
+	// Repudiation
 	public static void set_hasLog(OntModel model, String baseURI) {
 		
 		System.out.println("Starting to set hasLog");
@@ -645,6 +649,7 @@ public class jena_query {
 		
 	}
 	
+	// Denial of Service
 	public static void set_isRepeative(OntModel model, String baseURI) {
 		// [TODO]
 		System.out.println("Start setting is_Repeative.");
@@ -707,7 +712,7 @@ public class jena_query {
 	}
 	
 	
-	public static void main(String[] args) { 
+	public static void main(String[] args) throws JSONException { 
 		
 		// Def basic info.
 		String recentPath = System.getProperty("user.dir");
