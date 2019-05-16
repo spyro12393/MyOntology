@@ -178,7 +178,7 @@ public class jena_query {
 					//System.out.println("This is a password, setting up is_passwd in owl file.");
 					Target_isPasswd.add(attribute_ID);
 				}
-				if(String.valueOf(attribute_type).compareTo("SecretKey")==0 || String.valueOf(attribute_type).compareTo("Hash")==0 || String.valueOf(attribute_type).compareTo("keygen")==0) {
+				if(String.valueOf(attribute_type).compareTo("javax.crypto.SecretKey")==0 || String.valueOf(attribute_type).compareTo("Hash")==0 || String.valueOf(attribute_type).compareTo("javax.crypto.KeyGenerator")==0) {
 					//System.out.println("These attributes has encryption, setting up has_encrypt in owl file.");
 					Target_has_encrypt.add(attribute_ID);
 				}
@@ -224,6 +224,7 @@ public class jena_query {
 		finally {
 			qexecAllClass.close();
 		}
+		
 		for(int i = 0; i < tempArray.size(); i++) {
 			//System.out.println("F: Init all class \"" + tempArray.get(i) + "\" has_encrypt to false.");
 			Individual temp_individual = model.getIndividual(baseURI + tempArray.get(i));
@@ -255,11 +256,11 @@ public class jena_query {
 		
 		// Input info into class ontology owl.
 		for(int i=0; i<Class_has_passwd.size();i++) {
-			//System.out.println("T: Set \"" + Class_has_passwd.get(i) + "\" has_passwd to true.");
+			System.out.println("T: Set \"" + Class_has_passwd.get(i) + "\" has_passwd to true.");
 			Individual temp_individual = model.getIndividual(baseURI + Class_has_passwd.get(i));
 			temp_individual.setPropertyValue(has_passwd, ResourceFactory.createTypedLiteral("true"));
 		}
-		
+		System.out.println("DONE");
 		// Find which class hasn't encrypt
 		String queryString3 = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
@@ -716,7 +717,7 @@ public class jena_query {
 		
 		// Def basic info.
 		String recentPath = System.getProperty("user.dir");
-		String fileName = "G:/MyOntology/OntoReSec/src/SQWRL/Security_Ver1.owl";
+		String fileName = "G:/MyOntology/OntoReSec/src/SQWRL/Security_input.owl";
 		String baseURI = "http://isq.im.mgt.ncu.edu.tw/Security.owl#";
 				
 		// Create Ontology model
