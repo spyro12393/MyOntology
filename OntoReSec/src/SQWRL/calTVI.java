@@ -259,7 +259,6 @@ public class calTVI {
 		ElevationOfPrivilege = NV_ServiceMethod;
 		
 		// Save results to json file
-		String message;
 		JSONObject obj = new JSONObject();
 		obj.put("Spoofing", Spoofing);
 		obj.put("Tampering", Tampering);
