@@ -715,6 +715,7 @@ public class jena_query {
 	
 	public static void main(String[] args) throws JSONException { 
 		
+		System.out.println("Start..");
 		// Def basic info.
 		String recentPath = System.getProperty("user.dir");
 		String fileName = "G:/MyOntology/OntoReSec/src/SQWRL/Security_input.owl";
@@ -742,25 +743,9 @@ public class jena_query {
 		//testClass();
 		
 		
-		//get_DynamicData();
-		//get_Rerefence_Attribute();
-		
-		
-		
-		/*
-		getInheritance();
-		Set_Computable();
-		WriteModel();
-		Set_Refactoring();
-		set_AttributeReference();
-		WriteModel();
-		
-		System.out.println("end");
-		WriteModel();
-		*/
-		
 		WriteModel(model, baseURI);
 		
+		System.out.println("Start calculating TVI values.");
 		calTVI.getVal();
 	}
 		

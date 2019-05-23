@@ -23,8 +23,6 @@ import org.json.JSONException;
 
 public class calTVI {
 	
-	
-	
 	public static void getVal() throws JSONException {
 		
 		int total_class = 0;
@@ -65,7 +63,6 @@ public class calTVI {
 		QueryExecution qexec_totalClass = QueryExecutionFactory.create(query_totalClass, model);
 				
 		try {
-			System.out.println("-----------\nQuerying Attribute info...");
 			ResultSet results = qexec_totalClass.execSelect();
 			while(results.hasNext()) {
 						
@@ -90,14 +87,14 @@ public class calTVI {
 		// has_encrypt cal
 		String queryString_encrypt = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
-				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name; oo:has_encrypt ?class_encrypt}";// oo:has_encrypt ?class_encrypt; oo:has_Visiblity ?class_visibility; oo:is_NameSimilar ?class_namesimilar; oo:has_Log ?class_Log" + "}";
+				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name; oo:has_encrypt \"false\" " + "}";
 		
 		System.out.println(queryString_encrypt);
 		Query query_encrypt = QueryFactory.create(queryString_encrypt);
 		QueryExecution qexec_encrypt = QueryExecutionFactory.create(query_encrypt, model);
-				
+		
+		System.out.println("Calculating encrypt value:");
 		try {
-			System.out.println("-----------\nQuerying Attribute info...");
 			ResultSet results = qexec_encrypt.execSelect();
 			while(results.hasNext()) {
 						
@@ -278,7 +275,34 @@ public class calTVI {
         }
 	}
 
+	public static void getSpoofingVal() {
+		
+	}
 	
-	
-	
+	public static void getRefactor() {
+		
+		String fileName = "G:/MyOntology/OntoReSec/src/SQWRL/Security_output.owl";
+		String baseURI = "http://isq.im.mgt.ncu.edu.tw/Security.owl#";
+		
+		System.out.println("Reading results.");
+		
+
+		// Create Ontology model
+		System.out.println(fileName);
+		OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+			
+		try {
+			File file = new File(fileName);
+			FileReader reader = new FileReader(file);
+			model.read(reader, null);
+			System.out.println(model);
+			
+			} catch (Exception e) {	
+				e.printStackTrace();
+			}
+		
+		
+		
+	}
+
 }
