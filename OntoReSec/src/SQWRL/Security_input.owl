@@ -1,794 +1,1337 @@
-<?xml version="1.0" encoding="windows-1252"?>
-<rdf:RDF
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:Security="http://isq.im.mgt.ncu.edu.tw/Security.owl#"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
-  <owl:Ontology rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl"/>
-  <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
-  <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference"/>
-  <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Inherit">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Generalization"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call"/>
-  <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Parameter">
-    <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Message"/>
-  <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method">
-    <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Package"/>
-  <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute">
-    <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Method">
-    <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-  <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Attribute">
-    <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project"/>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Reference_Source">
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute_Class">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference_Attribute">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference"/>
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Message_Member"/>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class_Attribute">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class_Method">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference_Method">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference"/>
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method_Parameter">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Parameter"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Source">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call"/>
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Reference_Target">
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Inheritance">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Package_Class">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Package"/>
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method_Class">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member_Reference">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference_Parameter">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference"/>
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Parameter"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project_Package">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project"/>
-    <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Package"/>
-  </owl:ObjectProperty>
-  <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Inheritance">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Visibility">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#is_passwd">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Parameter"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Name">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Parameter"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_ID">
-    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#is_NameSimilar">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Type">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Parameter"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_encrypt">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#is_Log">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_passwd">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_GetSet">
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-    <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </owl:DatatypeProperty>
-  <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#isq.test">
-    <Security:Project_Package>
-      <Security:Package rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest">
-        <Security:Package_Class>
-          <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena">
-            <Security:has_Name>cohJena</Security:has_Name>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.Set_Computable()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
-                <Security:has_Name>Set_Computable()</Security:has_Name>
-                <Security:has_ID>SecureTest.cohJena.Set_Computable()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.Set_Refactoring()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
-                <Security:has_Name>Set_Refactoring()</Security:has_Name>
-                <Security:has_ID>SecureTest.cohJena.Set_Refactoring()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.fileName2">
-                <Security:has_Type>java.lang.String</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
-                <Security:has_Name>fileName2</Security:has_Name>
-                <Security:has_ID>SecureTest.cohJena.fileName2</Security:has_ID>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.fileName">
-                <Security:has_Type>java.lang.String</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
-                <Security:has_Name>fileName</Security:has_Name>
-                <Security:has_ID>SecureTest.cohJena.fileName</Security:has_ID>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.set_AttributeReference()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
-                <Security:has_Name>set_AttributeReference()</Security:has_Name>
-                <Security:has_ID>SecureTest.cohJena.set_AttributeReference()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.get_StaticData()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
-                <Security:has_Name>get_StaticData()</Security:has_Name>
-                <Security:has_ID>SecureTest.cohJena.get_StaticData()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.get_DynamicData()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
-                <Security:has_Name>get_DynamicData()</Security:has_Name>
-                <Security:has_ID>SecureTest.cohJena.get_DynamicData()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.WriteModel()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
-                <Security:has_Name>WriteModel()</Security:has_Name>
-                <Security:has_ID>SecureTest.cohJena.WriteModel()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.baseURI">
-                <Security:has_Type>java.lang.String</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
-                <Security:has_Name>baseURI</Security:has_Name>
-                <Security:has_ID>SecureTest.cohJena.baseURI</Security:has_ID>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.model">
-                <Security:has_Type>org.apache.jena.ontology.OntModel</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
-                <Security:has_Name>model</Security:has_Name>
-                <Security:has_ID>SecureTest.cohJena.model</Security:has_ID>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:has_ID>SecureTest.cohJena</Security:has_ID>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.getInheritance()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
-                <Security:has_Name>getInheritance()</Security:has_Name>
-                <Security:has_ID>SecureTest.cohJena.getInheritance()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.main()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
-                <Security:has_Name>main()</Security:has_Name>
-                <Security:has_ID>SecureTest.cohJena.main()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-          </owl:NamedIndividual>
-        </Security:Package_Class>
-        <Security:Package_Class>
-          <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity">
-            <Security:has_ID>SecureTest.calSimilarity</Security:has_ID>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity.editDistance()">
-                <Security:has_Type>int</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity"/>
-                <Security:has_Name>editDistance()</Security:has_Name>
-                <Security:has_ID>SecureTest.calSimilarity.editDistance()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity.printSimilarity()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity"/>
-                <Security:has_Name>printSimilarity()</Security:has_Name>
-                <Security:has_ID>SecureTest.calSimilarity.printSimilarity()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity.similarity()">
-                <Security:has_Type>double</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity"/>
-                <Security:has_Name>similarity()</Security:has_Name>
-                <Security:has_ID>SecureTest.calSimilarity.similarity()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:has_Name>calSimilarity</Security:has_Name>
-            <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-          </owl:NamedIndividual>
-        </Security:Package_Class>
-        <Security:Package_Class>
-          <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA">
-            <Security:has_ID>SecureTest.BananaA</Security:has_ID>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.Height">
-                <Security:has_Type>double</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA"/>
-                <Security:has_Name>Height</Security:has_Name>
-                <Security:has_ID>SecureTest.BananaA.Height</Security:has_ID>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.Size">
-                <Security:has_Type>int</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA"/>
-                <Security:has_Name>Size</Security:has_Name>
-                <Security:has_ID>SecureTest.BananaA.Size</Security:has_ID>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.Type">
-                <Security:has_Type>java.lang.String</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA"/>
-                <Security:has_Name>Type</Security:has_Name>
-                <Security:has_ID>SecureTest.BananaA.Type</Security:has_ID>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.BananaA()">
-                <Security:has_Type></Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA"/>
-                <Security:has_Name>BananaA()</Security:has_Name>
-                <Security:has_ID>SecureTest.BananaA.BananaA()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.cook()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA"/>
-                <Security:has_Name>cook()</Security:has_Name>
-                <Security:has_ID>SecureTest.BananaA.cook()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:has_Name>BananaA</Security:has_Name>
-            <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-          </owl:NamedIndividual>
-        </Security:Package_Class>
-        <Security:Package_Class>
-          <Security:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample">
-            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.c">
-                <Security:has_Type>javax.crypto.Cipher</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
-                <Security:has_Name>c</Security:has_Name>
-                <Security:has_ID>SecureTest.EncryptExample.c</Security:has_ID>
-                <Security:has_Visibility>private</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.keygen">
-                <Security:has_Type>javax.crypto.KeyGenerator</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
-                <Security:has_Name>keygen</Security:has_Name>
-                <Security:has_ID>SecureTest.EncryptExample.keygen</Security:has_ID>
-                <Security:has_Visibility>private</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.password">
-                <Security:has_Type>java.lang.String</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
-                <Security:has_Name>password</Security:has_Name>
-                <Security:has_ID>SecureTest.EncryptExample.password</Security:has_ID>
-                <Security:has_Visibility>private</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:has_Name>EncryptExample</Security:has_Name>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.cipherByte">
-                <Security:has_Type>byte[]</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
-                <Security:has_Name>cipherByte</Security:has_Name>
-                <Security:has_ID>SecureTest.EncryptExample.cipherByte</Security:has_ID>
-                <Security:has_Visibility>private</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.deskey">
-                <Security:has_Type>javax.crypto.SecretKey</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
-                <Security:has_Name>deskey</Security:has_Name>
-                <Security:has_ID>SecureTest.EncryptExample.deskey</Security:has_ID>
-                <Security:has_Visibility>private</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.Encrytor()">
-                <Security:has_Type>byte[]</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
-                <Security:has_Name>Encrytor()</Security:has_Name>
-                <Security:has_ID>SecureTest.EncryptExample.Encrytor()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.Decryptor()">
-                <Security:has_Type>byte[]</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
-                <Security:has_Name>Decryptor()</Security:has_Name>
-                <Security:has_ID>SecureTest.EncryptExample.Decryptor()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.PasswordEncrypt()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
-                <Security:has_Name>PasswordEncrypt()</Security:has_Name>
-                <Security:has_ID>SecureTest.EncryptExample.PasswordEncrypt()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.main()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
-                <Security:has_Name>main()</Security:has_Name>
-                <Security:has_ID>SecureTest.EncryptExample.main()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:has_ID>SecureTest.EncryptExample</Security:has_ID>
-          </Security:Class>
-        </Security:Package_Class>
-        <Security:Package_Class>
-          <Security:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A">
-            <Security:has_Name>A</Security:has_Name>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.b">
-                <Security:has_Type>SecureTest.B</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
-                <Security:has_Name>b</Security:has_Name>
-                <Security:has_ID>SecureTest.A.b</Security:has_ID>
-                <Security:has_Visibility>private</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.A()">
-                <Security:has_Type></Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
-                <Security:has_Name>A()</Security:has_Name>
-                <Security:has_ID>SecureTest.A.A()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.number">
-                <Security:has_Type>int</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
-                <Security:has_Name>number</Security:has_Name>
-                <Security:has_ID>SecureTest.A.number</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.c">
-                <Security:has_Type>SecureTest.C</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
-                <Security:has_Name>c</Security:has_Name>
-                <Security:has_ID>SecureTest.A.c</Security:has_ID>
-                <Security:has_Visibility>private</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.set_B()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
-                <Security:has_Name>set_B()</Security:has_Name>
-                <Security:has_ID>SecureTest.A.set_B()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:has_ID>SecureTest.A</Security:has_ID>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.method_AB()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
-                <Security:has_Name>method_AB()</Security:has_Name>
-                <Security:has_ID>SecureTest.A.method_AB()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.method_AC()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
-                <Security:has_Name>method_AC()</Security:has_Name>
-                <Security:has_ID>SecureTest.A.method_AC()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-          </Security:Class>
-        </Security:Package_Class>
-        <Security:Package_Class>
-          <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B">
-            <Security:has_ID>SecureTest.B</Security:has_ID>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B.method_B1()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B"/>
-                <Security:has_Name>method_B1()</Security:has_Name>
-                <Security:has_ID>SecureTest.B.method_B1()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B.method_B2()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B"/>
-                <Security:has_Name>method_B2()</Security:has_Name>
-                <Security:has_ID>SecureTest.B.method_B2()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B.method_B3()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B"/>
-                <Security:has_Name>method_B3()</Security:has_Name>
-                <Security:has_ID>SecureTest.B.method_B3()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:has_Name>B</Security:has_Name>
-            <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-          </owl:NamedIndividual>
-        </Security:Package_Class>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-        <Security:Package_Class>
-          <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest">
-            <Security:has_ID>SecureTest.MainTest</Security:has_ID>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.a">
-                <Security:has_Type>SecureTest.calSimilarity</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
-                <Security:has_Name>a</Security:has_Name>
-                <Security:has_ID>SecureTest.MainTest.a</Security:has_ID>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.main()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
-                <Security:has_Name>main()</Security:has_Name>
-                <Security:has_ID>SecureTest.MainTest.main()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.banB">
-                <Security:has_Type>SecureTest.BananaB</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
-                <Security:has_Name>banB</Security:has_Name>
-                <Security:has_ID>SecureTest.MainTest.banB</Security:has_ID>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.printSimilarity()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
-                <Security:has_Name>printSimilarity()</Security:has_Name>
-                <Security:has_ID>SecureTest.MainTest.printSimilarity()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.similarity()">
-                <Security:has_Type>double</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
-                <Security:has_Name>similarity()</Security:has_Name>
-                <Security:has_ID>SecureTest.MainTest.similarity()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-            <Security:has_Name>MainTest</Security:has_Name>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.banA">
-                <Security:has_Type>SecureTest.BananaA</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
-                <Security:has_Name>banA</Security:has_Name>
-                <Security:has_ID>SecureTest.MainTest.banA</Security:has_ID>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.editDistance()">
-                <Security:has_Type>int</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
-                <Security:has_Name>editDistance()</Security:has_Name>
-                <Security:has_ID>SecureTest.MainTest.editDistance()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-          </owl:NamedIndividual>
-        </Security:Package_Class>
-        <Security:Package_Class>
-          <Security:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt">
-            <Security:Class_Method>
-              <Security:Method rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.ProcessPass()">
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt"/>
-                <Security:has_Type>void</Security:has_Type>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <Security:has_ID>SecureTest.PasswordNoEncrypt.ProcessPass()</Security:has_ID>
-                <Security:has_Name>ProcessPass()</Security:has_Name>
-              </Security:Method>
-            </Security:Class_Method>
-            <Security:Class_Attribute>
-              <Security:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.age">
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt"/>
-                <Security:has_Type>int</Security:has_Type>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <Security:has_ID>SecureTest.PasswordNoEncrypt.age</Security:has_ID>
-                <Security:has_Name>age</Security:has_Name>
-              </Security:Attribute>
-            </Security:Class_Attribute>
-            <Security:Class_Attribute>
-              <Security:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.name">
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt"/>
-                <Security:has_Type>java.lang.String</Security:has_Type>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <Security:has_ID>SecureTest.PasswordNoEncrypt.name</Security:has_ID>
-                <Security:has_Name>name</Security:has_Name>
-              </Security:Attribute>
-            </Security:Class_Attribute>
-            <Security:Class_Attribute>
-              <Security:Attribute rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.password">
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt"/>
-                <Security:has_Type>java.lang.String</Security:has_Type>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <Security:has_ID>SecureTest.PasswordNoEncrypt.password</Security:has_ID>
-                <Security:has_Name>password</Security:has_Name>
-              </Security:Attribute>
-            </Security:Class_Attribute>
-            <Security:has_ID>SecureTest.PasswordNoEncrypt</Security:has_ID>
-            <Security:has_Name>PasswordNoEncrypt</Security:has_Name>
-          </Security:Class>
-        </Security:Package_Class>
-        <Security:Package_Class>
-          <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C">
-            <Security:has_ID>SecureTest.C</Security:has_ID>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C.method_B1()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C"/>
-                <Security:has_Name>method_B1()</Security:has_Name>
-                <Security:has_ID>SecureTest.C.method_B1()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C.method_B2()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C"/>
-                <Security:has_Name>method_B2()</Security:has_Name>
-                <Security:has_ID>SecureTest.C.method_B2()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C.method_B3()">
-                <Security:has_Type>void</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C"/>
-                <Security:has_Name>method_B3()</Security:has_Name>
-                <Security:has_ID>SecureTest.C.method_B3()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:has_Name>C</Security:has_Name>
-            <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-          </owl:NamedIndividual>
-        </Security:Package_Class>
-        <Security:Package_Class>
-          <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB">
-            <Security:has_ID>SecureTest.BananaB</Security:has_ID>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.ran1">
-                <Security:has_Type>java.util.Random</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB"/>
-                <Security:has_Name>ran1</Security:has_Name>
-                <Security:has_ID>SecureTest.BananaB.ran1</Security:has_ID>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.ran2">
-                <Security:has_Type>java.util.Random</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB"/>
-                <Security:has_Name>ran2</Security:has_Name>
-                <Security:has_ID>SecureTest.BananaB.ran2</Security:has_ID>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Attribute>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.ran3">
-                <Security:has_Type>java.util.Random</Security:has_Type>
-                <Security:Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB"/>
-                <Security:has_Name>ran3</Security:has_Name>
-                <Security:has_ID>SecureTest.BananaB.ran3</Security:has_ID>
-                <Security:has_Visibility>default</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
-              </owl:NamedIndividual>
-            </Security:Class_Attribute>
-            <Security:Class_Method>
-              <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.gen_password()">
-                <Security:has_Type>java.lang.String</Security:has_Type>
-                <Security:Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB"/>
-                <Security:has_Name>gen_password()</Security:has_Name>
-                <Security:has_ID>SecureTest.BananaB.gen_password()</Security:has_ID>
-                <Security:has_Visibility>public</Security:has_Visibility>
-                <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
-              </owl:NamedIndividual>
-            </Security:Class_Method>
-            <Security:has_Name>BananaB</Security:has_Name>
-            <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
-          </owl:NamedIndividual>
-        </Security:Package_Class>
-      </Security:Package>
-    </Security:Project_Package>
-    <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project"/>
-  </owl:NamedIndividual>
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://isq.im.mgt.ncu.edu.tw/Security.owl#"
+     xml:base="http://isq.im.mgt.ncu.edu.tw/Security.owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:Security="http://isq.im.mgt.ncu.edu.tw/Security.owl#">
+    <owl:Ontology rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute_Class -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute_Class">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Reference_Source -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Reference_Source">
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Reference_Target -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Reference_Target">
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Source -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Source">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Class_Attribute -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class_Attribute">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Class_Method -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class_Method">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Inheritance -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Inheritance">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Member_Reference -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member_Reference">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Message_Member -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Message_Member"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Method_Class -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method_Class">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Method_Parameter -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method_Parameter">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Package_Class -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Package_Class">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Package"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Project_Package -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project_Package">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Package"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference_Attribute -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference_Attribute">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference_Method -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference_Method">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference_Parameter -->
+
+    <owl:ObjectProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference_Parameter">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference"/>
+        <rdfs:range rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#has_EncryptPassword -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_EncryptPassword"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#has_GetSet -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_GetSet">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#has_ID -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_ID">
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Inheritance -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Inheritance">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Name -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Name">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Parameter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Type -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Type">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Parameter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Visibility -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_Visibility">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#has_encrypt -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_encrypt">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#has_passwd -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#has_passwd">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#is_Log -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#is_Log">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#is_NameSimilar -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#is_NameSimilar">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#is_passwd -->
+
+    <owl:DatatypeProperty rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#is_passwd">
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <rdfs:domain rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Parameter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Call -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Attribute -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Attribute">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Method -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call_Method">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Call"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Class -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Generalization -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Generalization"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Inherit -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Inherit">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Generalization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Member -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Message -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Message"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Method -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Package -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Package"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Parameter -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Parameter">
+        <rdfs:subClassOf rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Member"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Project -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project"/>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference -->
+
+    <owl:Class rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#Reference"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Package"/>
+        <Package_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
+        <Package_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B"/>
+        <Package_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA"/>
+        <Package_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB"/>
+        <Package_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C"/>
+        <Package_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
+        <Package_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
+        <Package_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt"/>
+        <Package_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity"/>
+        <Package_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.b"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.c"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.number"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.A()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.method_AB()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.method_AC()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.set_B()"/>
+        <has_ID>SecureTest.A</has_ID>
+        <has_Name>A</has_Name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.b -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.b">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
+        <has_ID>SecureTest.A.b</has_ID>
+        <has_Name>b</has_Name>
+        <has_Type>SecureTest.B</has_Type>
+        <has_Visibility>private</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.c -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.c">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
+        <has_ID>SecureTest.A.c</has_ID>
+        <has_Name>c</has_Name>
+        <has_Type>SecureTest.C</has_Type>
+        <has_Visibility>private</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.number -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.number">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
+        <has_ID>SecureTest.A.number</has_ID>
+        <has_Name>number</has_Name>
+        <has_Type>int</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B.method_B1()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B.method_B2()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B.method_B3()"/>
+        <has_ID>SecureTest.B</has_ID>
+        <has_Name>B</has_Name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.Height"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.Size"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.Type"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.BananaA()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.cook()"/>
+        <has_ID>SecureTest.BananaA</has_ID>
+        <has_Name>BananaA</has_Name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.Height -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.Height">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA"/>
+        <has_ID>SecureTest.BananaA.Height</has_ID>
+        <has_Name>Height</has_Name>
+        <has_Type>double</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.Size -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.Size">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA"/>
+        <has_ID>SecureTest.BananaA.Size</has_ID>
+        <has_Name>Size</has_Name>
+        <has_Type>int</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.Type -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.Type">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA"/>
+        <has_ID>SecureTest.BananaA.Type</has_ID>
+        <has_Name>Type</has_Name>
+        <has_Type>java.lang.String</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.ran1"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.ran2"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.ran3"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.gen_password()"/>
+        <has_ID>SecureTest.BananaB</has_ID>
+        <has_Name>BananaB</has_Name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.ran1 -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.ran1">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB"/>
+        <has_ID>SecureTest.BananaB.ran1</has_ID>
+        <has_Name>ran1</has_Name>
+        <has_Type>java.util.Random</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.ran2 -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.ran2">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB"/>
+        <has_ID>SecureTest.BananaB.ran2</has_ID>
+        <has_Name>ran2</has_Name>
+        <has_Type>java.util.Random</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.ran3 -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.ran3">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB"/>
+        <has_ID>SecureTest.BananaB.ran3</has_ID>
+        <has_Name>ran3</has_Name>
+        <has_Type>java.util.Random</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C.method_B1()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C.method_B2()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C.method_B3()"/>
+        <has_ID>SecureTest.C</has_ID>
+        <has_Name>C</has_Name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.c"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.cipherByte"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.deskey"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.keygen"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.password"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.Decryptor()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.Encrytor()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.PasswordEncrypt()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.main()"/>
+        <has_ID>SecureTest.EncryptExample</has_ID>
+        <has_Name>EncryptExample</has_Name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.c -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.c">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
+        <has_ID>SecureTest.EncryptExample.c</has_ID>
+        <has_Name>c</has_Name>
+        <has_Type>javax.crypto.Cipher</has_Type>
+        <has_Visibility>private</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.cipherByte -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.cipherByte">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
+        <has_ID>SecureTest.EncryptExample.cipherByte</has_ID>
+        <has_Name>cipherByte</has_Name>
+        <has_Type>byte[]</has_Type>
+        <has_Visibility>private</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.deskey -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.deskey">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
+        <has_ID>SecureTest.EncryptExample.deskey</has_ID>
+        <has_Name>deskey</has_Name>
+        <has_Type>javax.crypto.SecretKey</has_Type>
+        <has_Visibility>private</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.keygen -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.keygen">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
+        <has_ID>SecureTest.EncryptExample.keygen</has_ID>
+        <has_Name>keygen</has_Name>
+        <has_Type>javax.crypto.KeyGenerator</has_Type>
+        <has_Visibility>private</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.password -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.password">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
+        <has_ID>SecureTest.EncryptExample.password</has_ID>
+        <has_Name>password</has_Name>
+        <has_Type>java.lang.String</has_Type>
+        <has_Visibility>private</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.a"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.banA"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.banB"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.editDistance()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.main()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.printSimilarity()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.similarity()"/>
+        <has_ID>SecureTest.MainTest</has_ID>
+        <has_Name>MainTest</has_Name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.a -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.a">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
+        <has_ID>SecureTest.MainTest.a</has_ID>
+        <has_Name>a</has_Name>
+        <has_Type>SecureTest.calSimilarity</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.banA -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.banA">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
+        <has_ID>SecureTest.MainTest.banA</has_ID>
+        <has_Name>banA</has_Name>
+        <has_Type>SecureTest.BananaA</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.banB -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.banB">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
+        <has_ID>SecureTest.MainTest.banB</has_ID>
+        <has_Name>banB</has_Name>
+        <has_Type>SecureTest.BananaB</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.age"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.name"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.password"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.ProcessPass()"/>
+        <has_ID>SecureTest.PasswordNoEncrypt</has_ID>
+        <has_Name>PasswordNoEncrypt</has_Name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.age -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.age">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt"/>
+        <has_ID>SecureTest.PasswordNoEncrypt.age</has_ID>
+        <has_Name>age</has_Name>
+        <has_Type>int</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.name -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.name">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt"/>
+        <has_ID>SecureTest.PasswordNoEncrypt.name</has_ID>
+        <has_Name>name</has_Name>
+        <has_Type>java.lang.String</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.password -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.password">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt"/>
+        <has_ID>SecureTest.PasswordNoEncrypt.password</has_ID>
+        <has_Name>password</has_Name>
+        <has_Type>java.lang.String</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity.editDistance()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity.printSimilarity()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity.similarity()"/>
+        <has_ID>SecureTest.calSimilarity</has_ID>
+        <has_Name>calSimilarity</has_Name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Class"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.baseURI"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.fileName"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.fileName2"/>
+        <Class_Attribute rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.model"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.Set_Computable()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.Set_Refactoring()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.WriteModel()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.getInheritance()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.get_DynamicData()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.get_StaticData()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.main()"/>
+        <Class_Method rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.set_AttributeReference()"/>
+        <has_ID>SecureTest.cohJena</has_ID>
+        <has_Name>cohJena</has_Name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.baseURI -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.baseURI">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
+        <has_ID>SecureTest.cohJena.baseURI</has_ID>
+        <has_Name>baseURI</has_Name>
+        <has_Type>java.lang.String</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.fileName -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.fileName">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
+        <has_ID>SecureTest.cohJena.fileName</has_ID>
+        <has_Name>fileName</has_Name>
+        <has_Type>java.lang.String</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.fileName2 -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.fileName2">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
+        <has_ID>SecureTest.cohJena.fileName2</has_ID>
+        <has_Name>fileName2</has_Name>
+        <has_Type>java.lang.String</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.model -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.model">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Attribute"/>
+        <Attribute_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
+        <has_ID>SecureTest.cohJena.model</has_ID>
+        <has_Name>model</has_Name>
+        <has_Type>org.apache.jena.ontology.OntModel</has_Type>
+        <has_Visibility>default</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#isq.test -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#isq.test">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Project"/>
+        <Project_Package rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.A() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.A()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
+        <has_ID>SecureTest.A.A()</has_ID>
+        <has_Name>A()</has_Name>
+        <has_Type></has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.method_AB() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.method_AB()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
+        <has_ID>SecureTest.A.method_AB()</has_ID>
+        <has_Name>method_AB()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.method_AC() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.method_AC()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
+        <has_ID>SecureTest.A.method_AC()</has_ID>
+        <has_Name>method_AC()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.set_B() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A.set_B()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.A"/>
+        <has_ID>SecureTest.A.set_B()</has_ID>
+        <has_Name>set_B()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B.method_B1() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B.method_B1()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B"/>
+        <has_ID>SecureTest.B.method_B1()</has_ID>
+        <has_Name>method_B1()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B.method_B2() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B.method_B2()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B"/>
+        <has_ID>SecureTest.B.method_B2()</has_ID>
+        <has_Name>method_B2()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B.method_B3() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B.method_B3()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.B"/>
+        <has_ID>SecureTest.B.method_B3()</has_ID>
+        <has_Name>method_B3()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.BananaA() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.BananaA()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA"/>
+        <has_ID>SecureTest.BananaA.BananaA()</has_ID>
+        <has_Name>BananaA()</has_Name>
+        <has_Type></has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.cook() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA.cook()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaA"/>
+        <has_ID>SecureTest.BananaA.cook()</has_ID>
+        <has_Name>cook()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.gen_password() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB.gen_password()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.BananaB"/>
+        <has_ID>SecureTest.BananaB.gen_password()</has_ID>
+        <has_Name>gen_password()</has_Name>
+        <has_Type>java.lang.String</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C.method_B1() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C.method_B1()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C"/>
+        <has_ID>SecureTest.C.method_B1()</has_ID>
+        <has_Name>method_B1()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C.method_B2() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C.method_B2()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C"/>
+        <has_ID>SecureTest.C.method_B2()</has_ID>
+        <has_Name>method_B2()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C.method_B3() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C.method_B3()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.C"/>
+        <has_ID>SecureTest.C.method_B3()</has_ID>
+        <has_Name>method_B3()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.Decryptor() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.Decryptor()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
+        <has_ID>SecureTest.EncryptExample.Decryptor()</has_ID>
+        <has_Name>Decryptor()</has_Name>
+        <has_Type>byte[]</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.Encrytor() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.Encrytor()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
+        <has_ID>SecureTest.EncryptExample.Encrytor()</has_ID>
+        <has_Name>Encrytor()</has_Name>
+        <has_Type>byte[]</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.PasswordEncrypt() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.PasswordEncrypt()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
+        <has_ID>SecureTest.EncryptExample.PasswordEncrypt()</has_ID>
+        <has_Name>PasswordEncrypt()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.main() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample.main()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.EncryptExample"/>
+        <has_ID>SecureTest.EncryptExample.main()</has_ID>
+        <has_Name>main()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.editDistance() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.editDistance()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
+        <has_ID>SecureTest.MainTest.editDistance()</has_ID>
+        <has_Name>editDistance()</has_Name>
+        <has_Type>int</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.main() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.main()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
+        <has_ID>SecureTest.MainTest.main()</has_ID>
+        <has_Name>main()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.printSimilarity() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.printSimilarity()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
+        <has_ID>SecureTest.MainTest.printSimilarity()</has_ID>
+        <has_Name>printSimilarity()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.similarity() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest.similarity()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.MainTest"/>
+        <has_ID>SecureTest.MainTest.similarity()</has_ID>
+        <has_Name>similarity()</has_Name>
+        <has_Type>double</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.ProcessPass() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt.ProcessPass()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.PasswordNoEncrypt"/>
+        <has_ID>SecureTest.PasswordNoEncrypt.ProcessPass()</has_ID>
+        <has_Name>ProcessPass()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity.editDistance() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity.editDistance()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity"/>
+        <has_ID>SecureTest.calSimilarity.editDistance()</has_ID>
+        <has_Name>editDistance()</has_Name>
+        <has_Type>int</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity.printSimilarity() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity.printSimilarity()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity"/>
+        <has_ID>SecureTest.calSimilarity.printSimilarity()</has_ID>
+        <has_Name>printSimilarity()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity.similarity() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity.similarity()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.calSimilarity"/>
+        <has_ID>SecureTest.calSimilarity.similarity()</has_ID>
+        <has_Name>similarity()</has_Name>
+        <has_Type>double</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.Set_Computable() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.Set_Computable()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
+        <has_ID>SecureTest.cohJena.Set_Computable()</has_ID>
+        <has_Name>Set_Computable()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.Set_Refactoring() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.Set_Refactoring()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
+        <has_ID>SecureTest.cohJena.Set_Refactoring()</has_ID>
+        <has_Name>Set_Refactoring()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.WriteModel() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.WriteModel()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
+        <has_ID>SecureTest.cohJena.WriteModel()</has_ID>
+        <has_Name>WriteModel()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.getInheritance() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.getInheritance()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
+        <has_ID>SecureTest.cohJena.getInheritance()</has_ID>
+        <has_Name>getInheritance()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.get_DynamicData() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.get_DynamicData()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
+        <has_ID>SecureTest.cohJena.get_DynamicData()</has_ID>
+        <has_Name>get_DynamicData()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.get_StaticData() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.get_StaticData()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
+        <has_ID>SecureTest.cohJena.get_StaticData()</has_ID>
+        <has_Name>get_StaticData()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.main() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.main()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
+        <has_ID>SecureTest.cohJena.main()</has_ID>
+        <has_Name>main()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.set_AttributeReference() -->
+
+    <owl:NamedIndividual rdf:about="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena.set_AttributeReference()">
+        <rdf:type rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#Method"/>
+        <Method_Class rdf:resource="http://isq.im.mgt.ncu.edu.tw/Security.owl#SecureTest.cohJena"/>
+        <has_ID>SecureTest.cohJena.set_AttributeReference()</has_ID>
+        <has_Name>set_AttributeReference()</has_Name>
+        <has_Type>void</has_Type>
+        <has_Visibility>public</has_Visibility>
+    </owl:NamedIndividual>
 </rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.7.2018-12-02T02:23:35Z) https://github.com/owlcs/owlapi -->
+

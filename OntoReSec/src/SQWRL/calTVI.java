@@ -26,7 +26,7 @@ public class calTVI {
 	public static void getVal() throws JSONException {
 		
 		int total_class = 0;
-		int Encrypt = 0;
+		int NV_PassNoEncrypt = 0;
 		int ServiceMethod = 0;
 		int NV_NameSimilar = 0;
 		int NV_Log = 0;
@@ -87,7 +87,7 @@ public class calTVI {
 		// has_encrypt cal
 		String queryString_encrypt = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
-				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name; oo:has_encrypt \"false\" " + "}";
+				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name; oo:has_EncryptPassword \"false\" " + "}";
 		
 		System.out.println(queryString_encrypt);
 		Query query_encrypt = QueryFactory.create(queryString_encrypt);
@@ -102,23 +102,23 @@ public class calTVI {
 				//System.out.println("--------------------query---------------------");
 				Literal class_ID = soln.getLiteral("class_ID");
 				Literal class_name = soln.getLiteral("class_name");
-				Literal class_encrypt = soln.getLiteral("class_encrypt");
+				//Literal class_encrypt = soln.getLiteral("class_encrypt");
 				
 				
-				System.out.println("Class Name: " + class_name + "\nClass ID:" + class_ID + "\nClass encrypt: " + class_encrypt);// + "\nClass encrypt: " + class_encrypt + "\nClass Get/Set" + class_getset);
+				System.out.println("Has't encrypt: Class Name: " + class_name + "\nClass ID:" + class_ID);
 				
+				NV_PassNoEncrypt += 1;
 				
-				
-				if(Boolean.valueOf(class_encrypt.toString()) == true) {
+				/*if(Boolean.valueOf(class_encrypt.toString()) == true) {
 					Encrypt += 1;
-				}
+				}*/
 				
 			}
 		} finally {
 			qexec_encrypt.close();
 		}
 		
-		System.out.print("Encrypt: " + Encrypt);
+		System.out.print("PassNoEncrypt: " + NV_PassNoEncrypt);
 		System.out.println("\n--------");
 		
 		// ====================================================================
@@ -227,7 +227,7 @@ public class calTVI {
 		int NV_Repeative = 0;
 		System.out.println("Repeative: " + NV_Repeative);
 		
-		System.out.println("Encrypt: " + Encrypt);
+		System.out.println("PassNoEncrypt: " + NV_PassNoEncrypt);
 		
 		System.out.println("GetSet: " + ServiceMethod);
 		
@@ -238,8 +238,7 @@ public class calTVI {
 		int NV_ServiceMethod = total_class - ServiceMethod;
 		System.out.println("NV_GetSet: " + NV_ServiceMethod);
 		
-		int NV_Encrypt = total_class - Encrypt;
-		System.out.println("NV_Encrypt: " + NV_Encrypt);
+		System.out.println("NV_PassNoEncrypt: " + NV_PassNoEncrypt);
 		
 		int Spoofing = 0;
 		int Tampering = 0;
@@ -249,9 +248,9 @@ public class calTVI {
 		int ElevationOfPrivilege = 0;
 		
 		Spoofing = NV_NameSimilar;
-		Tampering = NV_ServiceMethod + NV_Encrypt;
+		Tampering = NV_ServiceMethod + NV_PassNoEncrypt;
 		Repudiation = NV_Log;
-		InformationDisclosure = NV_Encrypt;
+		InformationDisclosure = NV_PassNoEncrypt;
 		DenialOfService = NV_Repeative;
 		ElevationOfPrivilege = NV_ServiceMethod;
 		

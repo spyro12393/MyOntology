@@ -141,10 +141,12 @@ public class jena_query {
 		ArrayList<RDFNode> Class_has_encrypt = new ArrayList<RDFNode>();
 		ArrayList<RDFNode> Class_has_passwd = new ArrayList<RDFNode>();
 		ArrayList<RDFNode> tempArray = new ArrayList<RDFNode>();
+		ArrayList<RDFNode> Target_hasPassNoEncrypt = new ArrayList<RDFNode>();
 
 		DatatypeProperty is_passwd = model.getDatatypeProperty(baseURI + "is_passwd");
 		DatatypeProperty has_passwd = model.getDatatypeProperty(baseURI + "has_passwd");
 		DatatypeProperty has_encrypt = model.getDatatypeProperty(baseURI + "has_encrypt");
+		DatatypeProperty has_EncryptPassword = model.getDatatypeProperty(baseURI + "has_EncryptPassword");
 		ObjectProperty Attribute_Class = model.getObjectProperty(baseURI + "Attribute_Class");
 		
 		//System.out.println("Output: " + Attribute_Class);
@@ -298,7 +300,7 @@ public class jena_query {
 			
 		Query query4 = QueryFactory.create(queryString4);
 		QueryExecution qexec4 = QueryExecutionFactory.create(query4, model);
-		//System.out.println("--------------------class---------------------");
+		// System.out.println("--------------------class---------------------");
 		try {
 			ResultSet results4 = qexec4.execSelect();
 			while (results4.hasNext()) {
@@ -306,12 +308,20 @@ public class jena_query {
 				Literal class_ID = soln4.getLiteral("class_ID");
 				//Literal class_name = soln4.getLiteral("class_name");
 				System.out.println("Classes that has password but no encrypt method: " + class_ID);
-				//Target_has_encrypt.add(class_ID);
+				Target_hasPassNoEncrypt.add(class_ID);
 			}
 		}
 		finally {
 			qexec2.close();
 		}
+		
+		for(int i = 0; i<Target_hasPassNoEncrypt.size(); i++) {
+			Individual temp_individual = model.getIndividual(baseURI + Target_hasPassNoEncrypt.get(i));
+			temp_individual.setPropertyValue(has_EncryptPassword, ResourceFactory.createTypedLiteral("false"));
+			System.out.println("Classes that has password but no encrypt method:" + Target_hasPassNoEncrypt.get(i));
+			
+		}
+		
 		
 		System.out.println("isEncrypt Done");
 		System.out.println("-------------------------------");

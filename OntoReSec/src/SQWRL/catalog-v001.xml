@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1558028925435" name="duplicate:http://isq.im.mgt.ncu.edu.tw/Security.owl" uri="Security_backup.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1558028925435" name="duplicate:http://isq.im.mgt.ncu.edu.tw/Security.owl" uri="Security_input.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1558028925435" name="duplicate:http://isq.im.mgt.ncu.edu.tw/Security.owl" uri="Security_Ver1.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1558971412325" name="duplicate:http://isq.im.mgt.ncu.edu.tw/Security.owl" uri="Security_backup.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1558971412325" name="duplicate:http://isq.im.mgt.ncu.edu.tw/Security.owl" uri="Security_input.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1558971412325" name="duplicate:http://isq.im.mgt.ncu.edu.tw/Security.owl" uri="Security_output.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1558971412325" name="duplicate:http://isq.im.mgt.ncu.edu.tw/Security.owl" uri="Security_Ver1.owl"/>
     </group>
 </catalog>
