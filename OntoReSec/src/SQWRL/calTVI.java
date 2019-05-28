@@ -5,6 +5,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.apache.jena.atlas.json.JsonArray;
+import org.apache.jena.atlas.json.JsonObject;
+import org.apache.jena.atlas.json.io.parser.JSONParser;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.query.Query;
@@ -15,7 +18,10 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.ModelFactory;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -84,7 +90,7 @@ public class calTVI {
 		
 		
 		
-		// has_encrypt cal
+		// has_encrypt calculate
 		String queryString_encrypt = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
 				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name; oo:has_EncryptPassword \"false\" " + "}";
@@ -104,8 +110,9 @@ public class calTVI {
 				Literal class_name = soln.getLiteral("class_name");
 				//Literal class_encrypt = soln.getLiteral("class_encrypt");
 				
-				
 				System.out.println("Has't encrypt: Class Name: " + class_name + "\nClass ID:" + class_ID);
+				
+				
 				
 				NV_PassNoEncrypt += 1;
 				
@@ -117,6 +124,9 @@ public class calTVI {
 		} finally {
 			qexec_encrypt.close();
 		}
+		
+		// [TODO]: HERE
+		String refactor_encrypt = "";
 		
 		System.out.print("PassNoEncrypt: " + NV_PassNoEncrypt);
 		System.out.println("\n--------");
@@ -254,16 +264,42 @@ public class calTVI {
 		DenialOfService = NV_Repeative;
 		ElevationOfPrivilege = NV_ServiceMethod;
 		
-		// Save results to json file
-		JSONObject obj = new JSONObject();
-		obj.put("Spoofing", Spoofing);
-		obj.put("Tampering", Tampering);
-		obj.put("Repudiation", Repudiation);
-		obj.put("InformationDisclosure", InformationDisclosure);
-		obj.put("DenialOfService", DenialOfService);
-		obj.put("ElevationOfPrivilege", ElevationOfPrivilege);
+		/*
+		String arj = "{"
+				+
+				"\"InformationDisclosure\":{\"VI\":" + InformationDisclosure + ", \"Refactor\":{\"Encrypt\":\"problem is...\", \"Decode\":\"Hello\"}},\r\n" + 
+				"\"Tampering\":{\"VI\":" + Tampering + ", \"Refactor\":\"info\"},\r\n" + 
+				"\"Repudiation\":{\"VI\":" + Repudiation + ", \"Refactor\":\"info\"},\r\n" + 
+				"\"ElevationOfPrivilege\":{\"VI\":" + ElevationOfPrivilege + ", \"Refactor\":\"info\"},\r\n" + 
+				"\"Spoofing\":{\"VI\":" + Spoofing + ", \"Refactor\":\"info\"},\r\n" + 
+				"\"DenialOfService\":{\"VI\":" + DenialOfService + ", \"Refactor\":\"info\"}"
+				+"}";
+		*/
 		
+		// Save results to json file
+		List<String> list_refactor = new ArrayList<String>();
+		list_refactor.add("Error: Fix a");
+		list_refactor.add("Warning: Fix a and b");
+		list_refactor.add("Error: Fix B");
+		
+		Map map = new HashMap();
+		map.put("VI", 3);
+		map.put("Refactor", list_refactor);
+		
+		JSONArray array = new JSONArray();
+		array.put(map);
+		
+		JSONObject obj = new JSONObject();
+		obj.put("Spoofing", array);
+		obj.put("Tampering", array);
+		obj.put("Repudiation", array);
+		obj.put("InformationDisclosure", array);
+		obj.put("DenailOfService", array);
+		obj.put("ElevationOfPrivilege", array);
 		System.out.println(obj);
+		
+		
+		
 		
 		// Save to .json file
 		try (FileWriter file = new FileWriter("g:\\SecurityWeb\\my-app\\src\\assets\\results.json")) {
@@ -272,6 +308,12 @@ public class calTVI {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        
+	}
+	
+	public static void save2JSON(String index, int value) {
+		JsonObject jsonObj1 = new JsonObject();
 	}
 
 	public static void getSpoofingVal() {

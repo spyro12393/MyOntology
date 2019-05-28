@@ -321,10 +321,9 @@ public class jena_query {
 			System.out.println("Classes that has password but no encrypt method:" + Target_hasPassNoEncrypt.get(i));
 			
 		}
-		
-		
 		System.out.println("isEncrypt Done");
 		System.out.println("-------------------------------");
+		
 	}
 	
 	public static void set_Decendant(OntModel model, String baseURI) {
