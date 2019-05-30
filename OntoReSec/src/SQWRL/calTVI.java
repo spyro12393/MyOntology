@@ -1,6 +1,8 @@
 package SQWRL;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -29,8 +31,39 @@ import org.json.JSONException;
 
 public class calTVI {
 	
+	static String refactorInfoFile = "G:\\MyOntology\\OntoReSec\\src\\SQWRL\\RefactorInfo.txt";
+	
+	public static String readInfo(String path) {
+		String data = "";
+		try {
+			FileReader fr = new FileReader(path);
+			BufferedReader br = new BufferedReader(fr);
+			while (br.ready()) {
+				data += br.readLine() + "\n";
+			}
+			fr.close();
+			//deleteFile(path);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return data;
+	}
+	
 	public static void getVal() throws JSONException {
 		
+		// Create Refactor list.
+		List<String> Spoofing_refactor = new ArrayList<String>();
+		List<String> Tampering_refactor = new ArrayList<String>();
+		List<String> Repudiation_refactor = new ArrayList<String>();
+		List<String> Information_refactor = new ArrayList<String>();
+		List<String> Denial_refactor = new ArrayList<String>();
+		List<String> Elevation_refactor = new ArrayList<String>();
+		
+		// Create Vulnerability variables.
 		int total_class = 0;
 		int NV_PassNoEncrypt = 0;
 		int ServiceMethod = 0;
@@ -77,9 +110,10 @@ public class calTVI {
 				Literal class_ID = soln.getLiteral("class_ID");
 				Literal class_name = soln.getLiteral("class_name");
 				
-				System.out.println("Class Name: " + class_name + "\nClass ID:" + class_ID);
+				// System.out.println("Class Name: " + class_name + "\nClass ID:" + class_ID);
 				
 				total_class += 1;
+				System.out.println("Total amount of Classes: " + total_class);
 			}
 		} finally {
 			qexec_totalClass.close();
@@ -110,9 +144,12 @@ public class calTVI {
 				Literal class_name = soln.getLiteral("class_name");
 				//Literal class_encrypt = soln.getLiteral("class_encrypt");
 				
-				System.out.println("Has't encrypt: Class Name: " + class_name + "\nClass ID:" + class_ID);
+				// System.out.println("Has't encrypt: Class Name: " + class_name + "\nClass ID:" + class_ID);
 				
-				
+				// Adding Refactor suggestions.
+				String refactor_encrypt = "[Encrypt] Class: <" + class_name + "> contains Password but hasn't been Encrypted.";
+				System.out.println(refactor_encrypt);
+				Tampering_refactor.add(refactor_encrypt);
 				
 				NV_PassNoEncrypt += 1;
 				
@@ -124,9 +161,6 @@ public class calTVI {
 		} finally {
 			qexec_encrypt.close();
 		}
-		
-		// [TODO]: HERE
-		String refactor_encrypt = "";
 		
 		System.out.print("PassNoEncrypt: " + NV_PassNoEncrypt);
 		System.out.println("\n--------");
@@ -186,6 +220,8 @@ public class calTVI {
 						
 				System.out.println("Class Name: " + class_name + "\nClass ID:" + class_ID + "\nClass Name Similar: " + class_namesimilar);// + "\nClass encrypt: " + class_encrypt + "\nClass Get/Set" + class_getset);
 						
+				// [INFO] Refactor suggestions comes from jena_query.java.
+				
 				if(Boolean.valueOf(class_namesimilar.toString()) == true) {
 					NV_NameSimilar += 1;
 				}
@@ -195,9 +231,20 @@ public class calTVI {
 			qexec_NameSimilar.close();
 		}
 		
+				String refactorInfo = "";
+				refactorInfo = readInfo(refactorInfoFile);
+				String[] refactorInfo_split_line = refactorInfo.split("\n");
+				
+				System.out.println(refactorInfo_split_line[0]);
+				for(int i = 0; i < refactorInfo_split_line.length; i++) {
+					System.out.println(refactorInfo_split_line[i]);
+					Spoofing_refactor.add(refactorInfo_split_line[i]);
+				}
+				
+		
 		// ====================================================================
 		
-				// has_NameSimilar
+		// Has_Log
 		String queryString_Log = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
 				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name; oo:is_Log ?class_log}";// oo:has_encrypt ?class_encrypt; oo:has_Visiblity ?class_visibility; oo:is_NameSimilar ?class_namesimilar; oo:has_Log ?class_Log" + "}";
@@ -250,19 +297,19 @@ public class calTVI {
 		
 		System.out.println("NV_PassNoEncrypt: " + NV_PassNoEncrypt);
 		
-		int Spoofing = 0;
-		int Tampering = 0;
-		int Repudiation = 0;
-		int InformationDisclosure = 0;
-		int DenialOfService = 0;
-		int ElevationOfPrivilege = 0;
+		int VI_Spoofing = 0;
+		int VI_Tampering = 0;
+		int VI_Repudiation = 0;
+		int VI_InformationDisclosure = 0;
+		int VI_DenialOfService = 0;
+		int VI_ElevationOfPrivilege = 0;
 		
-		Spoofing = NV_NameSimilar;
-		Tampering = NV_ServiceMethod + NV_PassNoEncrypt;
-		Repudiation = NV_Log;
-		InformationDisclosure = NV_PassNoEncrypt;
-		DenialOfService = NV_Repeative;
-		ElevationOfPrivilege = NV_ServiceMethod;
+		VI_Spoofing = NV_NameSimilar;
+		VI_Tampering = NV_ServiceMethod + NV_PassNoEncrypt;
+		VI_Repudiation = NV_Log;
+		VI_InformationDisclosure = NV_PassNoEncrypt;
+		VI_DenialOfService = NV_Repeative;
+		VI_ElevationOfPrivilege = NV_ServiceMethod;
 		
 		/*
 		String arj = "{"
@@ -277,25 +324,50 @@ public class calTVI {
 		*/
 		
 		// Save results to json file
-		List<String> list_refactor = new ArrayList<String>();
-		list_refactor.add("Error: Fix a");
-		list_refactor.add("Warning: Fix a and b");
-		list_refactor.add("Error: Fix B");
+		Map<String, Object> smap = new HashMap<String, Object>();
+		smap.put("VI", VI_Spoofing);
+		smap.put("Refactor", Spoofing_refactor);
 		
-		Map map = new HashMap();
-		map.put("VI", 3);
-		map.put("Refactor", list_refactor);
+		Map<String, Object> tmap = new HashMap<String, Object>();
+		tmap.put("VI", VI_Tampering);
+		tmap.put("Refactor", Tampering_refactor);
 		
-		JSONArray array = new JSONArray();
-		array.put(map);
+		Map<String, Object> rmap = new HashMap<String, Object>();
+		rmap.put("VI", VI_Repudiation);
+		rmap.put("Refactor", Repudiation_refactor);
+		
+		Map<String, Object> imap = new HashMap<String, Object>();
+		imap.put("VI", VI_InformationDisclosure);
+		imap.put("Refactor", Information_refactor);
+		
+		Map<String, Object> dmap = new HashMap<String, Object>();
+		dmap.put("VI", VI_DenialOfService);
+		dmap.put("Refactor", Denial_refactor);
+		
+		Map<String, Object> emap = new HashMap<String, Object>();
+		emap.put("VI", VI_ElevationOfPrivilege);
+		emap.put("Refactor", Elevation_refactor);
+		
+		JSONArray s_array = new JSONArray();
+		s_array.put(smap);
+		JSONArray t_array = new JSONArray();
+		t_array.put(tmap);
+		JSONArray r_array = new JSONArray();
+		r_array.put(rmap);
+		JSONArray i_array = new JSONArray();
+		i_array.put(imap);
+		JSONArray d_array = new JSONArray();
+		d_array.put(dmap);
+		JSONArray e_array = new JSONArray();
+		e_array.put(emap);
 		
 		JSONObject obj = new JSONObject();
-		obj.put("Spoofing", array);
-		obj.put("Tampering", array);
-		obj.put("Repudiation", array);
-		obj.put("InformationDisclosure", array);
-		obj.put("DenailOfService", array);
-		obj.put("ElevationOfPrivilege", array);
+		obj.put("Spoofing", s_array);
+		obj.put("Tampering", t_array);
+		obj.put("Repudiation", r_array);
+		obj.put("InformationDisclosure", i_array);
+		obj.put("DenailOfService", d_array);
+		obj.put("ElevationOfPrivilege", e_array);
 		System.out.println(obj);
 		
 		
@@ -308,15 +380,15 @@ public class calTVI {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-        
+		
 	}
 	
 	public static void save2JSON(String index, int value) {
 		JsonObject jsonObj1 = new JsonObject();
 	}
 
-	public static void getSpoofingVal() {
+	public static void getSpoofingVal(String[] split_line) {
+		
 		
 	}
 	

@@ -4,10 +4,17 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.Map;
 
 import org.apache.jena.ontology.DatatypeProperty;
 import org.apache.jena.ontology.Individual;
@@ -25,10 +32,73 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class jena_query {
 		
+	public static void CreateJSON() throws JSONException {
+		
+		Map<String, Object> smap = new HashMap<String, Object>();
+		smap.put("VI", "");
+		smap.put("Refactor", "");
+		
+		Map<String, Object> tmap = new HashMap<String, Object>();
+		tmap.put("VI", "");
+		tmap.put("Refactor", "");
+		
+		Map<String, Object> rmap = new HashMap<String, Object>();
+		rmap.put("VI", "");
+		rmap.put("Refactor", "");
+		
+		Map<String, Object> imap = new HashMap<String, Object>();
+		imap.put("VI", "");
+		imap.put("Refactor", "");
+		
+		Map<String, Object> dmap = new HashMap<String, Object>();
+		dmap.put("VI", "");
+		dmap.put("Refactor", "");
+		
+		Map<String, Object> emap = new HashMap<String, Object>();
+		emap.put("VI", "");
+		emap.put("Refactor", "");
+		
+		JSONArray s_array = new JSONArray();
+		s_array.put(smap);
+		JSONArray t_array = new JSONArray();
+		t_array.put(tmap);
+		JSONArray r_array = new JSONArray();
+		r_array.put(rmap);
+		JSONArray i_array = new JSONArray();
+		i_array.put(imap);
+		JSONArray d_array = new JSONArray();
+		d_array.put(dmap);
+		JSONArray e_array = new JSONArray();
+		e_array.put(emap);
+		
+		JSONObject obj = new JSONObject();
+		obj.put("Spoofing", s_array);
+		obj.put("Tampering", t_array);
+		obj.put("Repudiation", r_array);
+		obj.put("InformationDisclosure", i_array);
+		obj.put("DenailOfService", d_array);
+		obj.put("ElevationOfPrivilege", e_array);
+		System.out.println(obj);
+		
+		
+		
+		
+		// Save to .json file
+		try (FileWriter file = new FileWriter("g:\\SecurityWeb\\my-app\\src\\assets\\results.json")) {
+            file.write(String.valueOf(obj));
+            System.out.println("Finish saving to json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+	}
+	
 	public static void WriteModel(OntModel model, String baseURI) {
 
 		model.setNsPrefix("Security_output", baseURI);
@@ -548,14 +618,19 @@ public class jena_query {
 		}
 		
 		 // 1 because you don't need to compare with yourself.
+		double similarityLimit = 0.7;
+		List<String> ResultList = new ArrayList<String>();
+		
 		for(int i=0; i<Target_ClassName.size(); i++) {
 			for(int j=i+1; j<Target_ClassName.size(); j++) {
 				
 				//System.out.println(i + ": " + Target_ClassName.get(i) + " compare w/ " + j + ": " + Target_ClassName.get(j));
 				//calSimilarity.printSimilarity(String.valueOf(Target_ClassName.get(i)), String.valueOf(Target_ClassName.get(j)));
 				double sim = calSimilarity.similarity(String.valueOf(Target_ClassName.get(i)), String.valueOf(Target_ClassName.get(j)));
-				if(sim > 0.7) {
-					System.out.println(sim + " is too similar." + "ClassID: " + Target_ClassID.get(i) + " and " + Target_ClassID.get(j));
+				if(sim > similarityLimit) {
+					String Results = "[Similarity]: Class: <" + Target_ClassName.get(i) + "> and <" + Target_ClassName.get(j) + ">. Similarity: " + sim + " is higher than " + similarityLimit + ".";
+					ResultList.add(Results);
+					System.out.println(Results);
 					
 					Individual temp_individual = model.getIndividual(baseURI + Target_ClassID.get(i));
 					System.out.println(temp_individual);
@@ -564,6 +639,15 @@ public class jena_query {
 					Individual temp_individual2 = model.getIndividual(baseURI + Target_ClassID.get(j));
 					System.out.println(temp_individual2);
 					temp_individual2.setPropertyValue(is_NameSimilar , ResourceFactory.createTypedLiteral("true"));
+					
+					// Add to json file.
+					try {
+						String file = "G:/MyOntology/OntoReSec/src/SQWRL/RefactorInfo.txt";
+						Path filepath = Paths.get(file);
+						Files.write(filepath, ResultList, Charset.forName("UTF-8"));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -755,6 +839,8 @@ public class jena_query {
 		WriteModel(model, baseURI);
 		
 		System.out.println("Start calculating TVI values.");
+		
+		CreateJSON();
 		calTVI.getVal();
 	}
 		
