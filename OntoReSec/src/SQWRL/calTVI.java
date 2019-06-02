@@ -167,7 +167,7 @@ public class calTVI {
 		
 		// ====================================================================
 		
-		// has_ServiceMethod
+		// has_ServiceMethod is False
 		String queryString_ServiceMethod = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
 				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name; oo:has_GetSet ?class_getset}";// oo:has_encrypt ?class_encrypt; oo:has_Visiblity ?class_visibility; oo:is_NameSimilar ?class_namesimilar; oo:has_Log ?class_Log" + "}";
@@ -186,9 +186,9 @@ public class calTVI {
 				Literal class_getset = soln.getLiteral("class_getset");
 				
 				
-				System.out.println("Class Name: " + class_name + "\nClass ID:" + class_ID + "\nClass Get/Set: " + class_getset);// + "\nClass encrypt: " + class_encrypt + "\nClass Get/Set" + class_getset);
+				System.out.println("NoServiceMethod Class Name: " + class_name + "\nClass ID:" + class_ID + "\nClass Get/Set: " + class_getset);// + "\nClass encrypt: " + class_encrypt + "\nClass Get/Set" + class_getset);
 				
-				if(Boolean.valueOf(class_getset.toString()) == true) {
+				if(Boolean.valueOf(class_getset.toString()) == false) {
 					ServiceMethod += 1;
 				}
 				

@@ -38,6 +38,14 @@ import org.json.JSONObject;
 
 public class jena_query {
 		
+	// Getting the amount of rules.
+	static int s_rule = 0;
+	static int t_rule = 0;
+	static int r_rule = 0;
+	static int i_rule = 0;
+	static int d_rule = 0;
+	static int e_rule = 0;
+	
 	public static void CreateJSON() throws JSONException {
 		
 		Map<String, Object> smap = new HashMap<String, Object>();
@@ -121,11 +129,39 @@ public class jena_query {
 		System.out.println("-------------------------------");
 		System.out.println("Start setting has_ServiceMethod.");
 		ArrayList<RDFNode> Target_hasServiceMethod = new ArrayList<RDFNode>();
+		ArrayList<RDFNode> Target_NoServiceMethod = new ArrayList<RDFNode>();
 		ArrayList<RDFNode> Class_hasServiceMethod = new ArrayList<RDFNode>();
+		ArrayList<RDFNode> tempArray = new ArrayList<RDFNode>();
 		DatatypeProperty has_GetSet = model.getDatatypeProperty(baseURI + "has_GetSet");
 		ObjectProperty Method_Class = model.getObjectProperty(baseURI + "Method_Class");
 				
-		//System.out.println("----------Class----------");
+		// Add false to all Class "has_get/set" to false.
+		String queryAllClassString = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
+				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
+				+ "?class a oo:Class; oo:has_ID ?class_ID "
+				+ "}";
+		Query queryAllClass = QueryFactory.create(queryAllClassString);
+		QueryExecution qexecAllClass = QueryExecutionFactory.create(queryAllClass, model);
+		// System.out.println("--------------------Initializing All Class---------------------");
+		try {
+			ResultSet resultsAllClass = qexecAllClass.execSelect();
+			while (resultsAllClass.hasNext()) {
+				QuerySolution soln2 = resultsAllClass.nextSolution();
+				Literal class_ID = soln2.getLiteral("class_ID");
+				tempArray.add(class_ID);
+			}
+		}
+		finally {
+			qexecAllClass.close();
+		}
+				
+		for(int i = 0; i < tempArray.size(); i++) {
+			//System.out.println("F: Init all class \"" + tempArray.get(i) + "\" has_encrypt to false.");
+			Individual temp_individual = model.getIndividual(baseURI + tempArray.get(i));
+			temp_individual.setPropertyValue(has_GetSet, ResourceFactory.createTypedLiteral("false"));
+		}
+		
+		// Start defining if has_Get/Set is true.
 				
 		String queryString = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
@@ -150,6 +186,9 @@ public class jena_query {
 				if(String.valueOf(method_name).contains("get") || String.valueOf(method_name).contains("set")) {
 					Target_hasServiceMethod.add(method_ID);
 					System.out.println("Get/Set: " + method_name);
+				}
+				else {
+					Target_NoServiceMethod.add(method_ID);
 				}
 			}
 		} finally {
@@ -182,7 +221,6 @@ public class jena_query {
 				//System.out.println("--------------------query---------------------");
 				Literal method_ID = soln.getLiteral("method_ID");
 				Literal method_name = soln.getLiteral("method_name");
-				Literal method_getset = soln.getLiteral("method_getset");
 				Literal class_ID = soln.getLiteral("class_ID");
 				//Literal method_visibility = soln.getLiteral("method_visibility");
 				//System.out.println("Method ID: " + method_ID + "\n" + "Method Name: " + method_name + "\nMethod Get/Set: " + method_getset + "\nwhat Class? " + class_ID);
@@ -205,6 +243,10 @@ public class jena_query {
 	
 	// Tampering, Information disclosure
 	public static void set_isEncrypt(OntModel model, String baseURI) {
+		
+		// What stride category does this belong?
+		i_rule = i_rule + 1;
+		
 		System.out.println("Start setting isEncrypt.");
 		ArrayList<RDFNode> Target_isPasswd = new ArrayList<RDFNode>();
 		ArrayList<RDFNode> Target_has_encrypt = new ArrayList<RDFNode>();
