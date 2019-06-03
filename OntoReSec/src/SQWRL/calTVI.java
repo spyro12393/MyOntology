@@ -31,6 +31,21 @@ import org.json.JSONException;
 
 public class calTVI {
 	
+	// Create Refactor list.
+	static List<String> Spoofing_refactor = new ArrayList<String>();
+	static List<String> Tampering_refactor = new ArrayList<String>();
+	static List<String> Repudiation_refactor = new ArrayList<String>();
+	static List<String> Information_refactor = new ArrayList<String>();
+	static List<String> Denial_refactor = new ArrayList<String>();
+	static List<String> Elevation_refactor = new ArrayList<String>();
+			
+	// Create Vulnerability variables.
+	static int total_class = 0;
+	static int NV_PassNoEncrypt = 0;
+	static int ServiceMethod = 0;
+	static int NV_NameSimilar = 0;
+	static int NV_Log = 0;
+	
 	static String refactorInfoFile = "G:\\MyOntology\\OntoReSec\\src\\SQWRL\\RefactorInfo.txt";
 	
 	public static String readInfo(String path) {
@@ -54,21 +69,6 @@ public class calTVI {
 	}
 	
 	public static void getVal() throws JSONException {
-		
-		// Create Refactor list.
-		List<String> Spoofing_refactor = new ArrayList<String>();
-		List<String> Tampering_refactor = new ArrayList<String>();
-		List<String> Repudiation_refactor = new ArrayList<String>();
-		List<String> Information_refactor = new ArrayList<String>();
-		List<String> Denial_refactor = new ArrayList<String>();
-		List<String> Elevation_refactor = new ArrayList<String>();
-		
-		// Create Vulnerability variables.
-		int total_class = 0;
-		int NV_PassNoEncrypt = 0;
-		int ServiceMethod = 0;
-		int NV_NameSimilar = 0;
-		int NV_Log = 0;
 		
 		String fileName = "G:/MyOntology/OntoReSec/src/SQWRL/Security_output.owl";
 		String baseURI = "http://isq.im.mgt.ncu.edu.tw/Security.owl#";
@@ -124,7 +124,7 @@ public class calTVI {
 		
 		
 		
-		// has_encrypt calculate
+		// has_encrypt calculate.
 		String queryString_encrypt = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
 				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name; oo:has_EncryptPassword \"false\" " + "}";
@@ -188,6 +188,12 @@ public class calTVI {
 				
 				System.out.println("NoServiceMethod Class Name: " + class_name + "\nClass ID:" + class_ID + "\nClass Get/Set: " + class_getset);// + "\nClass encrypt: " + class_encrypt + "\nClass Get/Set" + class_getset);
 				
+				// Adding Refactor suggestions.
+				String refactor_ServiceMethod = "[ServiceMethod] Class: <" + class_name + "> doesn't have any service method (eg. Get or Set) for var access.";
+				System.out.println(refactor_ServiceMethod);
+				Tampering_refactor.add(refactor_ServiceMethod);
+				Elevation_refactor.add(refactor_ServiceMethod);
+				
 				if(Boolean.valueOf(class_getset.toString()) == false) {
 					ServiceMethod += 1;
 				}
@@ -247,7 +253,7 @@ public class calTVI {
 		// Has_Log
 		String queryString_Log = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
-				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name; oo:is_Log ?class_log}";// oo:has_encrypt ?class_encrypt; oo:has_Visiblity ?class_visibility; oo:is_NameSimilar ?class_namesimilar; oo:has_Log ?class_Log" + "}";
+				+ "?package a oo:Package ; oo:has_ID ?package_ID; oo:has_Name ?package_name; oo:has_Log ?package_log}";// oo:has_encrypt ?class_encrypt; oo:has_Visiblity ?class_visibility; oo:is_NameSimilar ?class_namesimilar; oo:has_Log ?class_Log" + "}";
 						
 		System.out.println("\n" + queryString_Log);
 		Query query_Log = QueryFactory.create(queryString_Log);
@@ -258,14 +264,14 @@ public class calTVI {
 			while(results.hasNext()) {
 								
 				QuerySolution soln = results.nextSolution();
-				Literal class_ID = soln.getLiteral("class_ID");
-				Literal class_name = soln.getLiteral("class_name");
-				Literal class_log = soln.getLiteral("class_log");
+				Literal package_ID = soln.getLiteral("package_ID");
+				Literal package_name = soln.getLiteral("package_name");
+				Literal package_log = soln.getLiteral("package_log");
 								
 								
-				System.out.println("Class Name: " + class_name + "\nClass ID:" + class_ID + "\nClass Name is Log: " + class_log);// + "\nClass encrypt: " + class_encrypt + "\nClass Get/Set" + class_getset);
+				System.out.println("Class Name: " + package_name + "\nClass ID:" + package_ID + "\nClass Name is Log: " + package_log);// + "\nClass encrypt: " + class_encrypt + "\nClass Get/Set" + class_getset);
 						
-				if(Boolean.valueOf(class_log.toString()) == true) {
+				if(Boolean.valueOf(package_log.toString()) == false) {
 					NV_Log += 1;
 				}
 								
@@ -292,7 +298,7 @@ public class calTVI {
 		
 		System.out.println("NV_Log: " + NV_Log);
 		
-		int NV_ServiceMethod = total_class - ServiceMethod;
+		int NV_ServiceMethod = ServiceMethod;
 		System.out.println("NV_GetSet: " + NV_ServiceMethod);
 		
 		System.out.println("NV_PassNoEncrypt: " + NV_PassNoEncrypt);
@@ -383,14 +389,6 @@ public class calTVI {
 		
 	}
 	
-	public static void save2JSON(String index, int value) {
-		JsonObject jsonObj1 = new JsonObject();
-	}
-
-	public static void getSpoofingVal(String[] split_line) {
-		
-		
-	}
 	
 	public static void getRefactor() {
 		

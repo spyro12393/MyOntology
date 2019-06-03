@@ -162,7 +162,6 @@ public class jena_query {
 		}
 		
 		// Start defining if has_Get/Set is true.
-				
 		String queryString = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
 				+ "?method a oo:Method ; oo:has_ID ?method_ID ; oo:has_Name ?method_name ; oo:has_Visibility ?method_visibility; oo:has_Type ?method_type" + "}";
@@ -243,9 +242,6 @@ public class jena_query {
 	
 	// Tampering, Information disclosure
 	public static void set_isEncrypt(OntModel model, String baseURI) {
-		
-		// What stride category does this belong?
-		i_rule = i_rule + 1;
 		
 		System.out.println("Start setting isEncrypt.");
 		ArrayList<RDFNode> Target_isPasswd = new ArrayList<RDFNode>();
@@ -374,7 +370,7 @@ public class jena_query {
 			Individual temp_individual = model.getIndividual(baseURI + Class_has_passwd.get(i));
 			temp_individual.setPropertyValue(has_passwd, ResourceFactory.createTypedLiteral("true"));
 		}
-		System.out.println("DONE");
+		
 		// Find which class hasn't encrypt
 		String queryString3 = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
@@ -741,12 +737,39 @@ public class jena_query {
 	
 	// Repudiation
 	public static void set_hasLog(OntModel model, String baseURI) {
-		
+	
 		System.out.println("Starting to set hasLog");
+		ArrayList<RDFNode> tempTarget = new ArrayList<RDFNode>();
 		ArrayList<RDFNode> Target_isLog = new ArrayList<RDFNode>();
-		
+		ArrayList<RDFNode> Target_hasLog = new ArrayList<RDFNode>();
+		DatatypeProperty has_Log = model.getDatatypeProperty(baseURI + "has_Log");
 		DatatypeProperty is_Log = model.getDatatypeProperty(baseURI + "is_Log");
-				
+		
+		// Set all project has_Log to False.
+		String queryAllPackage = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
+				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
+				+ "?package a oo:Package ; oo:has_Name ?package_name ; oo:has_ID ?package_ID" + "}";
+		Query queryPackage = QueryFactory.create(queryAllPackage);
+		QueryExecution qexecAllPackage = QueryExecutionFactory.create(queryPackage, model);
+		
+		try {
+			ResultSet results = qexecAllPackage.execSelect();
+			while(results.hasNext()) {
+				QuerySolution soln = results.nextSolution();
+				//System.out.println("--------------------query---------------------");
+				Literal package_ID = soln.getLiteral("package_ID");
+				tempTarget.add(package_ID);
+				}
+			}finally{ }
+		System.out.println(tempTarget);
+		
+		for(int i=0; i<tempTarget.size(); i++) {
+			Individual temp_individual = model.getIndividual(baseURI + tempTarget.get(i));
+			// System.out.println(temp_individual);
+			temp_individual.setPropertyValue(has_Log , ResourceFactory.createTypedLiteral("false"));
+		}
+		
+		// Check if there is class Log related.
 		String queryString = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
 				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name" + "}";
@@ -756,7 +779,6 @@ public class jena_query {
 		QueryExecution qexec = QueryExecutionFactory.create(query, model);
 				
 		try {
-			System.out.println("Querying Class info...");
 			ResultSet results = qexec.execSelect();
 			while(results.hasNext()) {
 						
@@ -779,10 +801,43 @@ public class jena_query {
 		
 		for(int i=0; i<Target_isLog.size(); i++) {
 			Individual temp_individual = model.getIndividual(baseURI + Target_isLog.get(i));
-			// System.out.println(temp_individual);
 			temp_individual.setPropertyValue(is_Log , ResourceFactory.createTypedLiteral("true"));
 		}
 		
+		// [TODO] Set Packages w/ Log related class to has_Log = true.
+		String queryString2 =  "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
+				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
+				+ "?class a oo:Class; oo:has_ID ?class_ID ; oo:has_Name ?class_name ; oo:is_Log \"true\" ; oo:Class_Package ?package." 
+				+ "?package a oo:Package ; oo:has_ID ?package_ID ; oo:has_Name ?package_ID"
+				+ "}";
+		
+		//System.out.println(queryString);
+		Query query2 = QueryFactory.create(queryString2);
+		QueryExecution qexec2 = QueryExecutionFactory.create(query2, model);
+				
+		try {
+			System.out.println("Querying Package info...");
+			ResultSet results = qexec2.execSelect();
+			while(results.hasNext()) {
+						
+				QuerySolution soln = results.nextSolution();
+				//System.out.println("--------------------query---------------------");
+				Literal package_ID = soln.getLiteral("package_ID");
+				Literal package_name = soln.getLiteral("package_name");
+				// TODO
+				System.out.println("Package Name: " + package_name + "\nPackage ID:" + package_ID);
+				Target_hasLog.add(package_ID);
+				
+			}
+		} finally {
+			System.out.println("end");
+		}
+		System.out.println(Target_hasLog);
+		for(int i=0; i<Target_hasLog.size(); i++) {
+			Individual temp_individual = model.getIndividual(baseURI + Target_hasLog.get(i));
+			// System.out.println(temp_individual);
+			temp_individual.setPropertyValue(has_Log , ResourceFactory.createTypedLiteral("true"));
+		}
 	}
 	
 	// Denial of Service

@@ -111,17 +111,31 @@ public class insert_Individual {
 	
 	public static Individual Add_ProjectPackage(OntModel model, String[] split_line) {
 		
+		DatatypeProperty has_Name = model.getDatatypeProperty(baseURI + "has_Name");
+		DatatypeProperty has_ID = model.getDatatypeProperty(baseURI + "has_ID");
+		
 		ObjectProperty Project_Package = model.getObjectProperty(baseURI + "Project_Package");
+		
+		
 		OntClass Project_Class = model.getOntClass(baseURI + "Project");
 		OntClass Package_Class = model.getOntClass(baseURI + "Package");
 		Individual Project = Project_Class.createIndividual(baseURI + split_line[0]);
 		Individual Package = Package_Class.createIndividual(baseURI + split_line[2]);
+		
 		Project.addProperty(Project_Package,Package);
+		Project.setPropertyValue(has_Name, ResourceFactory.createTypedLiteral(split_line[0]));
+		Package.setPropertyValue(has_Name, ResourceFactory.createTypedLiteral(split_line[2]));
+		Project.setPropertyValue(has_ID , ResourceFactory.createTypedLiteral(split_line[0]));
+		Package.setPropertyValue(has_ID , ResourceFactory.createTypedLiteral(Package_name));
+		
+		
+		
 		return Package;
 	}
 	
 	public static Individual[] Add_Class(OntModel model, String[] split_line, Individual Package) {
 		
+		ObjectProperty Class_Package = model.getObjectProperty(baseURI + "Class_Package");
 		ObjectProperty Package_Classes = model.getObjectProperty(baseURI + "Package_Class");
 		DatatypeProperty has_Name = model.getDatatypeProperty(baseURI + "has_Name");
 		DatatypeProperty has_ID = model.getDatatypeProperty(baseURI + "has_ID");
@@ -139,7 +153,7 @@ public class insert_Individual {
 			Package.addProperty(Package_Classes, Class[i]);
 			Class[i].setPropertyValue(has_Name , ResourceFactory.createTypedLiteral(Class_name[i]));
 			Class[i].setPropertyValue(has_ID , ResourceFactory.createTypedLiteral(Package_name + "." + Class_name[i]));
-			
+			Class[i].addProperty(Class_Package, Package);
 		}
 		
 		return Class;
