@@ -270,9 +270,15 @@ public class calTVI {
 								
 								
 				System.out.println("Class Name: " + package_name + "\nClass ID:" + package_ID + "\nClass Name is Log: " + package_log);// + "\nClass encrypt: " + class_encrypt + "\nClass Get/Set" + class_getset);
-						
+					
+				// Adding Refactor suggestions.
+				String refactor_ServiceMethod = "[Log] Package <" + package_name + "> doesn't exist a Log related class.";
+				System.out.println(refactor_ServiceMethod);
+				Repudiation_refactor.add(refactor_ServiceMethod);
+				
 				if(Boolean.valueOf(package_log.toString()) == false) {
 					NV_Log += 1;
+					
 				}
 								
 			}
