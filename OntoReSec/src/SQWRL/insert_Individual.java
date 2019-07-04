@@ -174,8 +174,10 @@ public class insert_Individual {
 		
 		String[] First_Split_Visibility = split_line[9].split("], ");
 		
-		String First_Split_AttributeType = split_line[7].replace("byte[]", "byte{}");
-		System.out.println(First_Split_AttributeType);
+		String string_Split_AttributeType = split_line[7].replace("String[]", "String{}");
+		String First_Split_AttributeType = string_Split_AttributeType.replace("byte[]", "byte{}");
+		
+		System.out.println("Here: " + First_Split_AttributeType);
 		String[] Sec_Split_AttrbuteType = First_Split_AttributeType.split("], ");
 		String[] Third_Split_AttrbuteType;
 		
@@ -194,6 +196,7 @@ public class insert_Individual {
 			Sec_Split_AttrbuteType[i] = Sec_Split_AttrbuteType[i].replace('[',']');
 			Sec_Split_AttrbuteType[i] = Sec_Split_AttrbuteType[i].replaceAll("]","");
 			Sec_Split_AttrbuteType[i] = Sec_Split_AttrbuteType[i].replace("byte{}","byte[]");
+			Sec_Split_AttrbuteType[i] = Sec_Split_AttrbuteType[i].replace("String{}","String[]");
 			
 			Sec_Split_AttrbuteName = First_Split_AttrbuteName[i].split(", ");
 			Sec_Split_Visibility = First_Split_Visibility[i].split(", ");
@@ -203,6 +206,7 @@ public class insert_Individual {
 			for(int j = 0 ; j < Sec_Split_AttrbuteName.length ; j++) {
 				if(Sec_Split_AttrbuteName[j].length()>0) {
 					Attr_ID =  Package_name + "." + Class_name[i] + "." + Sec_Split_AttrbuteName[j];
+					System.out.println(Attr_ID);
 					Attribute[i][j] = Attribute_Class.createIndividual(baseURI + Attr_ID);
 					Attribute[i][j].setPropertyValue(has_Name , ResourceFactory.createTypedLiteral(Sec_Split_AttrbuteName[j]));
 					Attribute[i][j].setPropertyValue(has_ID , ResourceFactory.createTypedLiteral(Attr_ID));

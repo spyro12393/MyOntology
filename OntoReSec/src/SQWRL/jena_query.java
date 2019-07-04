@@ -37,14 +37,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class jena_query {
-		
-	// Getting the amount of rules.
-	static int s_rule = 0;
-	static int t_rule = 0;
-	static int r_rule = 0;
-	static int i_rule = 0;
-	static int d_rule = 0;
-	static int e_rule = 0;
 	
 	public static void CreateJSON() throws JSONException {
 		
@@ -164,7 +156,7 @@ public class jena_query {
 		// Start defining if has_Get/Set is true.
 		String queryString = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
-				+ "?method a oo:Method ; oo:has_ID ?method_ID ; oo:has_Name ?method_name ; oo:has_Visibility ?method_visibility; oo:has_Type ?method_type" + "}";
+				+ "?method a oo:Method ; oo:has_ID ?method_ID ; oo:has_Name ?method_name ; oo:has_Type ?method_type" + "}";
 		
 		System.out.println(queryString);
 		Query query = QueryFactory.create(queryString);
@@ -179,7 +171,7 @@ public class jena_query {
 				//System.out.println("--------------------query---------------------");
 				Literal method_ID = soln.getLiteral("method_ID");
 				Literal method_name = soln.getLiteral("method_name");
-				Literal method_visibility = soln.getLiteral("method_visibility");
+				
 				//System.out.println("Method ID: " + method_ID + "\n" + "Method Name: " + method_name + "\nMethod Visibility: " + method_visibility);
 				
 				if(String.valueOf(method_name).contains("get") || String.valueOf(method_name).contains("set")) {
@@ -199,7 +191,6 @@ public class jena_query {
 			temp_individual.setPropertyValue(has_GetSet, ResourceFactory.createTypedLiteral("true"));
 		}
 		
-		System.out.println("has Get/Set Done.");
 		
 		// If Get/Set = true, find which class it belongs.
 		String queryString2 = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
@@ -234,6 +225,13 @@ public class jena_query {
 			Individual temp_individual = model.getIndividual(baseURI + Class_hasServiceMethod.get(i));
 			temp_individual.setPropertyValue(has_GetSet, ResourceFactory.createTypedLiteral("true"));
 		}
+		
+		// Find if Class has public attribute. [TODO]
+		/*String queryString_attr = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
+				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
+				+ "?method a oo:Method; oo:has_ID ?method_ID ; oo:has_Name ?method_name; oo:has_GetSet \"true\"; oo:Method_Class ?class."
+				+ "?class a oo:Class ; oo:has_ID ?class_ID" + "}";*/
+		
 		
 		System.out.println("has_ServiceMethod Done.");
 		System.out.println("-------------------------------");
@@ -664,9 +662,17 @@ public class jena_query {
 				
 				//System.out.println(i + ": " + Target_ClassName.get(i) + " compare w/ " + j + ": " + Target_ClassName.get(j));
 				//calSimilarity.printSimilarity(String.valueOf(Target_ClassName.get(i)), String.valueOf(Target_ClassName.get(j)));
+				
+				System.out.println(Target_ClassName.get(i) + " " + Target_ClassName.get(j));
+				/*if(Target_ClassName.get(i) == Target_ClassName.get(j)) {
+					System.out.println(Target_ClassName.get(i) + ", " + Target_ClassName.get(j));
+					break;
+				}*/
+				
 				double sim = calSimilarity.similarity(String.valueOf(Target_ClassName.get(i)), String.valueOf(Target_ClassName.get(j)));
 				if(sim > similarityLimit) {
-					String Results = "[Similarity]: Class: <" + Target_ClassName.get(i) + "> and <" + Target_ClassName.get(j) + ">. Similarity: " + sim + " is higher than " + similarityLimit + ".";
+					
+					String Results = "[Similarity] Class: <" + Target_ClassName.get(i) + "> and <" + Target_ClassName.get(j) + ">. Similarity: " + sim + " is higher than " + similarityLimit + ".";
 					ResultList.add(Results);
 					System.out.println(Results);
 					
@@ -936,6 +942,9 @@ public class jena_query {
 		WriteModel(model, baseURI);
 		
 		System.out.println("Start calculating TVI values.");
+		
+		calSimilarity.printSimilarity("Account", "Accounts");
+		calSimilarity.printSimilarity("Deposit", "DepositSlot");
 		
 		CreateJSON();
 		calTVI.getVal();

@@ -1,1 +1,1 @@
-[Similarity]: Class: <BananaB> and <BananaA>. Similarity: 0.8571428571428571 is higher than 0.7.
+[Similarity] Class: <Accounts> and <Account>. Similarity: 0.875 is higher than 0.7.

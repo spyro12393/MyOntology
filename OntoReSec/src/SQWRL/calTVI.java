@@ -45,7 +45,17 @@ public class calTVI {
 	static int ServiceMethod = 0;
 	static int NV_NameSimilar = 0;
 	static int NV_Log = 0;
+	static int NV_Repeative = 0;
 	
+	// Getting the amount of rules.
+	static int s_rule = 0;
+	static int t_rule = 0;
+	static int r_rule = 0;
+	static int i_rule = 0;
+	static int d_rule = 0;
+	static int e_rule = 0;
+	
+	static String class_repeat = "true";
 	static String refactorInfoFile = "G:\\MyOntology\\OntoReSec\\src\\SQWRL\\RefactorInfo.txt";
 	
 	public static String readInfo(String path) {
@@ -66,6 +76,10 @@ public class calTVI {
 			e.printStackTrace();
 		}
 		return data;
+	}
+	
+	public static void getNormalize() {
+		
 	}
 	
 	public static void getVal() throws JSONException {
@@ -149,7 +163,9 @@ public class calTVI {
 				// Adding Refactor suggestions.
 				String refactor_encrypt = "[Encrypt] Class: <" + class_name + "> contains Password but hasn't been Encrypted.";
 				System.out.println(refactor_encrypt);
+				
 				Tampering_refactor.add(refactor_encrypt);
+				Information_refactor.add(refactor_encrypt);
 				
 				NV_PassNoEncrypt += 1;
 				
@@ -170,7 +186,7 @@ public class calTVI {
 		// has_ServiceMethod is False
 		String queryString_ServiceMethod = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
-				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name; oo:has_GetSet ?class_getset}";// oo:has_encrypt ?class_encrypt; oo:has_Visiblity ?class_visibility; oo:is_NameSimilar ?class_namesimilar; oo:has_Log ?class_Log" + "}";
+				+ "?class a oo:Class ; oo:has_ID ?class_ID; oo:has_Name ?class_name; oo:has_GetSet \"false\"}";// oo:has_encrypt ?class_encrypt; oo:has_Visiblity ?class_visibility; oo:is_NameSimilar ?class_namesimilar; oo:has_Log ?class_Log" + "}";
 		
 		System.out.println("\n" + queryString_ServiceMethod);
 		Query query_ServiceMethod = QueryFactory.create(queryString_ServiceMethod);
@@ -183,10 +199,10 @@ public class calTVI {
 				QuerySolution soln = results.nextSolution();
 				Literal class_ID = soln.getLiteral("class_ID");
 				Literal class_name = soln.getLiteral("class_name");
-				Literal class_getset = soln.getLiteral("class_getset");
+				//Literal class_getset = soln.getLiteral("class_getset");
 				
 				
-				System.out.println("NoServiceMethod Class Name: " + class_name + "\nClass ID:" + class_ID + "\nClass Get/Set: " + class_getset);// + "\nClass encrypt: " + class_encrypt + "\nClass Get/Set" + class_getset);
+				System.out.println("NoServiceMethod Class Name: " + class_name + "\nClass ID:" + class_ID + "\nClass Get/Set: " + "false");// + "\nClass encrypt: " + class_encrypt + "\nClass Get/Set" + class_getset);
 				
 				// Adding Refactor suggestions.
 				String refactor_ServiceMethod = "[ServiceMethod] Class: <" + class_name + "> doesn't have any service method (eg. Get or Set) for var access.";
@@ -194,9 +210,11 @@ public class calTVI {
 				Tampering_refactor.add(refactor_ServiceMethod);
 				Elevation_refactor.add(refactor_ServiceMethod);
 				
-				if(Boolean.valueOf(class_getset.toString()) == false) {
+				ServiceMethod += 1;
+				
+				/*if(Boolean.valueOf(class_getset.toString()) == false) {
 					ServiceMethod += 1;
-				}
+				}*/
 				
 			}
 		} finally {
@@ -237,16 +255,53 @@ public class calTVI {
 			qexec_NameSimilar.close();
 		}
 		
-				String refactorInfo = "";
-				refactorInfo = readInfo(refactorInfoFile);
-				String[] refactorInfo_split_line = refactorInfo.split("\n");
+		String refactorInfo = "";
+		refactorInfo = readInfo(refactorInfoFile);
+		String[] refactorInfo_split_line = refactorInfo.split("\n");
 				
-				System.out.println(refactorInfo_split_line[0]);
-				for(int i = 0; i < refactorInfo_split_line.length; i++) {
-					System.out.println(refactorInfo_split_line[i]);
-					Spoofing_refactor.add(refactorInfo_split_line[i]);
+		System.out.println(refactorInfo_split_line[0]);
+		for(int i = 0; i < refactorInfo_split_line.length; i++) {
+			System.out.println(refactorInfo_split_line[i]);
+			Spoofing_refactor.add(refactorInfo_split_line[i]);
+		}
+			
+		// ====================================================================
+				
+		// is_Repeative [TODO]
+		String queryString_Repeative = "PREFIX oo: <http://isq.im.mgt.ncu.edu.tw/Security.owl#>"
+				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" + "SELECT * {"
+				+ "?package a oo:Package ; oo:has_ID ?package_ID; oo:has_Name ?package_name; oo:has_Log ?package_log}";// oo:has_encrypt ?class_encrypt; oo:has_Visiblity ?class_visibility; oo:is_NameSimilar ?class_namesimilar; oo:has_Log ?class_Log" + "}";
+								
+		System.out.println("\n" + queryString_Repeative);
+		Query query_Repeative = QueryFactory.create(queryString_Repeative);
+		QueryExecution qexec_Repeative = QueryExecutionFactory.create(query_Repeative, model);
+										
+		try {
+			ResultSet results = qexec_Repeative.execSelect();
+			while(results.hasNext()) {
+										
+				QuerySolution soln = results.nextSolution();
+				Literal class_ID = soln.getLiteral("class_ID");
+				Literal class_name = soln.getLiteral("class_name");
+				// Literal class_repeat = soln.getLiteral("class_repeative");				
+										
+				System.out.println("Class Name: " + class_name + "\nClass ID:" + class_ID);// + "\nClass encrypt: " + class_encrypt + "\nClass Get/Set" + class_getset);
+							
+				// Adding Refactor suggestions.
+				String refactor_ServiceMethod = "[Repeative] Class <B> and Class <C> has repeative attributes and methods. Consider inheritance.";
+				System.out.println(refactor_ServiceMethod);
+				// Denial_refactor.add(refactor_ServiceMethod);
+						
+				if(Boolean.valueOf(class_repeat.toString()) == true) {
+					NV_Repeative += 1;
+							
 				}
-				
+										
+			}
+		} finally {
+			qexec_Repeative.close();
+		}
+		
 		
 		// ====================================================================
 		
@@ -285,6 +340,9 @@ public class calTVI {
 		} finally {
 			qexec_Log.close();
 		}
+		
+		// Get min max Normalization result.
+		// Function: x'=(x-min(x))/(TotalClass*Rules)-0
 		
 		
 		// Show Results
